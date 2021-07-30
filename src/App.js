@@ -1,24 +1,45 @@
-import logo from './logo.svg';
+import { 
+  BrowserRouter as Router, 
+  Route, 
+  Switch,
+  Link 
+} from "react-router-dom";
+import styled from "styled-components";
+import {CloudinaryContext} from 'cloudinary-react';
+
+import Home from "./components/Home.js";
+import Explore from "./components/Explore.js";
+import Discover from "./components/Discover.js";
 import './App.css';
+
+const StyledLink = styled(Link)`
+  color: white;
+  text-decoration: none;
+  margin: 1rem;
+  position: relative;
+`;
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <main>
+        <nav>
+          <p id="logo">memorlee</p>
+          <ul>
+            <li><StyledLink to="/">Home</StyledLink></li>
+            <li><StyledLink to="/explore">Explore</StyledLink></li>
+            <li><StyledLink to="/discover">Discover</StyledLink></li>
+          </ul>
+        </nav>
+        <CloudinaryContext cloudName="memorlee-pics" secure="true" upload_preset="my_unsigned_preset">
+          <Switch>
+            <Route path="/" exact component={Home}/>
+            <Route path="/explore" component={Explore}/>
+            <Route path="/discover" component={Discover}/>
+          </Switch>
+        </CloudinaryContext>
+      </main>
+    </Router>
   );
 }
 
