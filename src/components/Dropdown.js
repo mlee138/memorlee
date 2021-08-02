@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 
 const SelectWrap = styled.div`
     display: inline-block;
@@ -16,13 +16,12 @@ const Select = styled.select`
     outline:none;
 `
 
-function Dropdown(props){
-    let {name, options} = props;
+function Dropdown({name, options, set}){
 
     const handleChange = (e) =>{
         const value = e.target.value;
         //console.log(value);
-        props.set(value);
+        set(value);
     }
 
     return(

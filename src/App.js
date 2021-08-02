@@ -10,6 +10,7 @@ import {CloudinaryContext} from 'cloudinary-react';
 import Home from "./components/Home.js";
 import Explore from "./components/Explore.js";
 import Discover from "./components/Discover.js";
+import AlbumView from "./components/AlbumView.js";
 import './App.css';
 
 const StyledLink = styled(Link)`
@@ -34,7 +35,8 @@ function App() {
         <CloudinaryContext cloudName="memorlee-pics" secure="true" upload_preset="my_unsigned_preset">
           <Switch>
             <Route path="/" exact component={Home}/>
-            <Route path="/explore" component={Explore}/>
+            <Route path="/explore" exact component={Explore}/>
+            <Route path="/explore/:location/:year" component={AlbumView}/>
             <Route path="/discover" component={Discover}/>
           </Switch>
         </CloudinaryContext>
