@@ -31,7 +31,7 @@ function App() {
     <Router>
       <Main>
         <nav>
-          <p id="logo">memorlee</p>
+          <StyledLink to="/">memorlee</StyledLink>
           <ul>
             <li><StyledLink to="/">Home</StyledLink></li>
             <li><StyledLink to="/explore">Explore</StyledLink></li>
