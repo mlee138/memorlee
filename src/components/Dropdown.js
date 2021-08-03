@@ -6,10 +6,11 @@ const SelectWrap = styled.div`
     display: inline-block;
     border: 3px solid #87de9e;
     border-radius: 20px;
-    padding: 0.4em 0.9em;
+    padding: 0 0.9em;
     margin: 1em;
     cursor: pointer;
     background-color: #87de9e;
+    color: black;
 `
 
 const Label = styled.label`
@@ -19,7 +20,7 @@ const Label = styled.label`
 const Select = styled.select`
     background-color: #87de9e;
     border: none;
-    padding: 0.2em;
+    padding: 0.6em 0.4em;
     cursor: inherit;
 `
 

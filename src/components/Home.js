@@ -1,13 +1,16 @@
 import React from "react";
+import {Link} from 'react-router-dom';
 import styled from 'styled-components';
 import {Image, Transformation} from 'cloudinary-react'
-import "./Home.css";
+import ImgSrc from '../images/home-background.jpg';
 
 const Container = styled.div`
     box-sizing: border-box;
     padding: 8rem;
     color: white;
     display: flex;
+    background-image: url(${ImgSrc});
+    background-size: cover;
 `;
 
 const Title = styled.h1`
@@ -26,13 +29,14 @@ const Subtitle = styled.h2`
     text-shadow: 5px 5px 5px hsl(0, 0%, 10%);
 `
 
-const Button = styled.button`
+const StyledLink = styled(Link)`
     padding: 1rem 2rem;
     background-color: hsla(141, 65%, 46%, 1);
     border: none;
     border-radius: 10px;
     box-shadow: 5px 5px 5px hsl(0, 0%, 10%);
     color: white;
+    text-decoration: none;
     font-size: 1rem;
     cursor: pointer;
 
@@ -44,27 +48,30 @@ const Button = styled.button`
         background-color: hsla(141, 35%, 46%, 1);
     }
 `
-/*
-const Image = styled.img`
+
+const Img = styled(Image)`
     border: 30px solid white;
     box-shadow: 7px 7px 7px hsl(0, 0%, 15%);
+    height: 75%;
+    width: 100%;
+    object-fit: cover;
 `
-*/
+
 function Home(){
     return(
-        <div id="Home">
-            <Container>
-                <div>
-                    <Subtitle>We'll always have the</Subtitle>
-                    <Title>memorlee<small>s</small></Title>
-                    <Button>Explore the Past</Button>
-                </div>
-                <div>
-                    <Image publicId="sample" />
-                </div>
-                
-            </Container>
-        </div>
+        <Container>
+            <div>
+                <Subtitle>We'll always have the</Subtitle>
+                <Title>memorlee<small>s</small></Title>
+                <StyledLink to="/explore">
+                    Explore the Past
+                </StyledLink>
+            </div>
+            <div>
+                <Img publicId="sample" />
+            </div>
+            
+        </Container>
     )
 }
 
