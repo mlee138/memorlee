@@ -1,4 +1,9 @@
 import React, {useState, useEffect} from 'react';
+import styled from 'styled-components';
+
+const Container = styled.div`
+    padding: 2em 20%;
+`
 
 function AlbumView({ match }) {
     const {location, year} = match.params;
@@ -16,10 +21,10 @@ function AlbumView({ match }) {
     }
 
     return (
-        <div>
+        <Container>
             <h1>{location}</h1>
             <h2>{year}</h2>
-        </div>
+        </Container>
     )
 }
 

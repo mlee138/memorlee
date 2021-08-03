@@ -4,16 +4,23 @@ import PropTypes from 'prop-types';
 
 const SelectWrap = styled.div`
     display: inline-block;
-    border: 1px solid black;
+    border: 3px solid #87de9e;
     border-radius: 20px;
     padding: 0.4em 0.9em;
     margin: 1em;
+    cursor: pointer;
+    background-color: #87de9e;
+`
+
+const Label = styled.label`
+    cursor: inherit;
 `
 
 const Select = styled.select`
+    background-color: #87de9e;
     border: none;
     padding: 0.2em;
-    outline:none;
+    cursor: inherit;
 `
 
 function Dropdown({name, options, set}){
@@ -26,16 +33,16 @@ function Dropdown({name, options, set}){
 
     return(
         <SelectWrap>
-            <label>
+            <Label>
                 {`${name} |`}
-                <Select onChange={e=>handleChange(e)}>
+                <Select  onChange={e=>handleChange(e)}>
                     {
                         options.map((item, i) => {
                             return <option key={i} value={item}>{item}</option>
                         })
                     }
                 </Select>
-            </label>
+            </Label>
         </SelectWrap>
     )
 }

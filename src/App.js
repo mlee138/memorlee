@@ -13,6 +13,12 @@ import Discover from "./components/Discover.js";
 import AlbumView from "./components/AlbumView.js";
 import './App.css';
 
+const Main = styled.main`
+  background-color: var(--bg-color);
+  color: var(--font-color);
+  min-height: 100vh;
+`;
+
 const StyledLink = styled(Link)`
   color: white;
   text-decoration: none;
@@ -23,7 +29,7 @@ const StyledLink = styled(Link)`
 function App() {
   return (
     <Router>
-      <main>
+      <Main>
         <nav>
           <p id="logo">memorlee</p>
           <ul>
@@ -40,7 +46,7 @@ function App() {
             <Route path="/discover" component={Discover}/>
           </Switch>
         </CloudinaryContext>
-      </main>
+      </Main>
     </Router>
   );
 }
