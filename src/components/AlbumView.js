@@ -1,11 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
 
-const Container = styled.div`
-    padding: 2em 20%;
-`
-
-function AlbumView({ match }) {
+function AlbumView({ match, history }) {
     const {location, year} = match.params;
     useEffect(()=>{
         //fetchImages();
@@ -20,12 +16,38 @@ function AlbumView({ match }) {
         console.log(images);
     }
 
+    const handleBack = () => {
+        history.goBack();
+    }
+
     return (
         <Container>
+            <Button onClick={handleBack}>&lt; Go back</Button>
             <h1>{location}</h1>
             <h2>{year}</h2>
         </Container>
     )
 }
+
+const Container = styled.div`
+    padding: 2em 20%;
+`
+
+const Button = styled.button`
+    background: rgba(255,255,255, 0);
+    border: 3px solid var(--font-color);
+    color: var(--font-color);
+    padding: 0.5em 1em;
+    font-size: 1.5rem;
+    cursor: pointer;
+
+    &:hover { 
+        background: rgba(255,255,255, 0.1);
+    }
+
+    &:active {
+        background: rgba(255,255,255, 0.25);
+    }
+`;
 
 export default AlbumView;
