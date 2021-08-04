@@ -13,19 +13,6 @@ import Discover from "./components/Discover.js";
 import AlbumView from "./components/AlbumView.js";
 import './App.css';
 
-const Main = styled.main`
-  background-color: var(--bg-color);
-  color: var(--font-color);
-  min-height: 100vh;
-`;
-
-const StyledLink = styled(Link)`
-  color: white;
-  text-decoration: none;
-  margin: 1rem;
-  position: relative;
-`;
-
 function App() {
   return (
     <Router>
@@ -50,5 +37,19 @@ function App() {
     </Router>
   );
 }
+
+
+const Main = styled.main`
+  background-color: var(--bg-color);
+  color: var(--font-color);
+  min-height: 100vh;
+`;
+
+const StyledLink = styled(Link)`
+  color: white;
+  text-decoration: none;
+  margin: 1rem;
+  position: relative;
+`;
 
 export default App;

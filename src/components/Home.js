@@ -3,13 +3,13 @@ import {Link} from 'react-router-dom';
 import styled from 'styled-components';
 import {Image, Transformation} from 'cloudinary-react'
 import ImgSrc from '../images/home-background.jpg';
-
+//background-image: url(${ImgSrc});
 const Container = styled.div`
     box-sizing: border-box;
     padding: 8rem;
     color: white;
     display: flex;
-    background-image: url(${ImgSrc});
+    
     background-size: cover;
 `;
 
@@ -51,6 +51,7 @@ const StyledLink = styled(Link)`
 
 const Img = styled(Image)`
     border: 30px solid white;
+    box-sizing: border-box;
     box-shadow: 7px 7px 7px hsl(0, 0%, 15%);
     height: 75%;
     width: 100%;
