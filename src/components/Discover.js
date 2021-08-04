@@ -1,52 +1,98 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
 import {Image} from 'cloudinary-react'
 
+const years = Array.from({length: 20}, (e, i)=> i+1996);
+const locations = ["Mohegan Sun", "Florida", "Mohonk", "Jamaica", "Test", "Test1", "Test2"]
+//arr.splice(index, 0, item); will insert item into arr at the 
+//specified index (deleting 0 items first, that is, it's just an insert).
+
+function Discover(){
+    const [choices, setChoices] = useState([]);
+    //const [answer, setAnswer] = useState();
+
+    useEffect(()=>{
+        newQuestion();
+    },[])
+
+    const newQuestion = () => {
+        //ADD CODE TO SPLICE IN THE CORRECT ANSWER
+        let rand = Math.floor(Math.random()*2)
+        let arr;
+        if (rand === 0){
+            arr = years;
+        } else {
+            arr = locations;
+        }
+        let indexArr = [];
+        while (indexArr.length < 3) {
+            rand = Math.floor(Math.random()*(arr.length-1));
+            if (indexArr.indexOf(rand) === -1)
+                indexArr.push(rand);
+        }
+        setChoices( indexArr.map(index => arr[index]) );
+        
+    }
+
+    const checkAnswer = (e) => {
+        const choice = e.target.innerHTML;
+        console.log(choice);
+    }
+
+    return(
+        <Container>
+            <Img publicId="sample" />
+            <RadioContainer>
+                {
+                    choices.map((choice, i) => {
+                        return  <div>
+                                    <Radio type="radio" id={choice} value="choice" name="question"/>
+                                    <Label onClick={(e) => checkAnswer(e)} key={i} for={choice}>{choice}</Label>
+                                </div>
+                    })
+                }
+            </RadioContainer>
+        </Container>
+    );
+}
+
+
 const Container = styled.div`
-    padding: 2em 20%;
+    padding: 5em 20%;
     display: flex;
+    justify-content: space-between;
+`;
+
+const Img = styled(Image)`
+    width: 75%;
+    object-fit: cover;
 `;
 
 const RadioContainer = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    align-items: center;
+    
+    & input[type="radio"]:checked+label{
+        background-color: #3a953b;
+    }
 `;
 
 const Label = styled.label`
-    border: 3px solid blue;
+    display: block;
+    border:3px solid green;
     border-radius: 5px;
     padding: 0.5em 1em;
     box-sizing: border-box;
+    width: 140px;
+    text-align:center;
 `;
 
 const Radio = styled.input`
+    display: none;
+
+    &:checked {
+    }
 `;
-
-function Discover(){
-    return(
-        <Container>
-            <Image publicId="sample" />
-            <RadioContainer>
-                <Label>FILL1
-                    <Radio type="radio" value="FILL" name="question"/>
-                </Label>
-
-                <label>FILL2
-                    <input type="radio" value="FILL" name="question"/>
-                </label>
-                
-                <label>FILL3
-                    <input type="radio" value="FILL" name="question"/>
-                </label>
-
-                <label>FILL4
-                    <input type="radio" value="FILL" name="question"/>
-                </label>
-            </RadioContainer>
-        </Container>
-    );
-}
 
 export default Discover;
