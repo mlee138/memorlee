@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
+import Modal from './Modal';
 
 function AlbumView({ match, history }) {
     const {location, year} = match.params;
@@ -8,6 +9,7 @@ function AlbumView({ match, history }) {
     }, []);
 
     const [images, setImages] = useState([]);
+    const [modalImg, setModalImg] = useState('');
 
     const fetchImages = async () => {
         const res = await [];
@@ -20,11 +22,21 @@ function AlbumView({ match, history }) {
         history.goBack();
     }
 
+    const showModal = (e) => {
+        setModalImg(e.target.src);
+    }
+
+    const closeModal = () => {
+        setModalImg('');
+    }
+
     return (
         <Container>
             <Button onClick={handleBack}>&lt; Go back</Button>
             <h1>{location}</h1>
             <h2>{year}</h2>
+            <img onClick={(e) => showModal(e)} src="../images/home-background.jpg" alt="closeup on bees and violet flower"/>
+            { modalImg ? <Modal closeModal={closeModal} url={modalImg}/> : null }
         </Container>
     )
 }
