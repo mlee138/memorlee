@@ -1,8 +1,32 @@
-import React from "react";
+import React, { useContext } from "react";
 import {Link} from 'react-router-dom';
 import styled from 'styled-components';
-import {Image, Transformation} from 'cloudinary-react'
+import {Image, Transformation} from 'cloudinary-react';
+import useFirestore from '../hooks/useFirestore';
 import ImgSrc from '../images/home-background.jpg';
+
+
+function Home(){
+    const { docs } = useFirestore();
+    console.log(docs);
+    return(
+        <Container>
+            <div>
+                <Subtitle>We'll always have the</Subtitle>
+                <Title>memorlee<small>s</small></Title>
+                <StyledLink to="/explore">
+                    Explore the Past 
+                </StyledLink>
+                <p></p>
+            </div>
+            <div>
+                <Img publicId="sample" />
+            </div>
+            
+        </Container>
+    )
+}
+
 //background-image: url(${ImgSrc});
 const Container = styled.div`
     box-sizing: border-box;
@@ -58,22 +82,5 @@ const Img = styled(Image)`
     object-fit: cover;
 `
 
-function Home(){
-    return(
-        <Container>
-            <div>
-                <Subtitle>We'll always have the</Subtitle>
-                <Title>memorlee<small>s</small></Title>
-                <StyledLink to="/explore">
-                    Explore the Past
-                </StyledLink>
-            </div>
-            <div>
-                <Img publicId="sample" />
-            </div>
-            
-        </Container>
-    )
-}
 
 export default Home;
