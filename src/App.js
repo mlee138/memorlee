@@ -11,9 +11,12 @@ import Home from "./components/Home.js";
 import Explore from "./components/Explore.js";
 import Discover from "./components/Discover.js";
 import AlbumView from "./components/AlbumView.js";
+import useData from "./hooks/useData";
 import './App.css';
 
 function App() {
+  const { years, locations } = useData();
+  
   return (
     <Router>
       <Main>

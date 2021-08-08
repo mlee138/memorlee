@@ -7,8 +7,8 @@ import ImgSrc from '../images/home-background.jpg';
 
 
 function Home(){
-    const { docs } = useFirestore();
-    console.log(docs);
+   // const { docs } = useFirestore();
+    //console.log(docs);
     return(
         <Container>
             <div>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { firestore } from '../firebase/config'
-//.orderBy('year')
+
+// README: change useFirestore to take in 3 parameters for query 
 const useFirestore = () => {
     const [docs, setDocs] = useState('');
 
