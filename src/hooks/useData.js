@@ -15,8 +15,8 @@ const useData = () => {
                     tempYears.add(doc.data().year);
                     tempLocations.add(doc.data().name);
                 });
-                setYears(tempYears);
-                setLocations(tempLocations);
+                setYears(Array.from(tempYears).sort());
+                setLocations(Array.from(tempLocations));
             })
             .catch((error) => {
                 console.log(`Error getting document: ${error}`);

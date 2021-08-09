@@ -1,13 +1,10 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import styled from 'styled-components';
 import {Image} from 'cloudinary-react'
 
-const years = Array.from({length: 20}, (e, i)=> i+1996);
-const locations = ["Mohegan Sun", "Florida", "Mohonk", "Jamaica", "Test", "Test1", "Test2"]
-//arr.splice(index, 0, item); will insert item into arr at the 
-//specified index (deleting 0 items first, that is, it's just an insert).
 
-function Discover(){
+function Discover({ data }){
+    const { years, locations } = data;
     const [choices, setChoices] = useState([]);
     //const [answer, setAnswer] = useState();
 
@@ -41,7 +38,10 @@ function Discover(){
 
     return(
         <Container>
-            <Img publicId="sample" />
+            <div>
+                <Img publicId="sample" />
+                <p>What year is this from?</p>
+            </div>
             <RadioContainer>
                 {
                     choices.map((choice, i) => {

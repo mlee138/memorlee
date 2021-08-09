@@ -15,8 +15,8 @@ import useData from "./hooks/useData";
 import './App.css';
 
 function App() {
-  const { years, locations } = useData();
-  
+  const data = useData();
+
   return (
     <Router>
       <Main>
@@ -29,12 +29,12 @@ function App() {
           </ul>
         </nav>
         <CloudinaryContext cloudName="memorlee-pics" secure="true" upload_preset="my_unsigned_preset">
-          <Switch>
-            <Route path="/" exact component={Home}/>
-            <Route path="/explore" exact component={Explore}/>
-            <Route path="/explore/:location/:year" component={AlbumView}/>
-            <Route path="/discover" component={Discover}/>
-          </Switch>
+            <Switch>
+              <Route path="/" exact component={()=> <Home data={data}/>}/>
+              <Route path="/explore" exact component={()=> <Explore data={data}/>}/>
+              <Route path="/explore/:location/:year" component={AlbumView}/>
+              <Route path="/discover" component={()=> <Discover data={data}/>}/>
+            </Switch>
         </CloudinaryContext>
       </Main>
     </Router>

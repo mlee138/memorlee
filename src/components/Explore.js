@@ -7,10 +7,8 @@ const Container = styled.div`
     padding: 2em 20%;
 `
 
-let years = [undefined, 1997, 1998, 1999, 2000]
-let locations = ["", "Florida", "Mohegan Sun", "Mohonk"]
-
-function Explore(){
+function Explore({ data }){
+    const {years, locations} = data;
     const [year, setYear] = useState();
     const [location, setLocation] = useState("");
     const [trips, setTrips] = useState([]);
