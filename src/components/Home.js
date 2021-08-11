@@ -2,13 +2,10 @@ import React, { useContext } from "react";
 import {Link} from 'react-router-dom';
 import styled from 'styled-components';
 import {Image, Transformation} from 'cloudinary-react';
-import useFirestore from '../hooks/useFirestore';
 import ImgSrc from '../images/home-background.jpg';
 
 
 function Home(){
-   // const { docs } = useFirestore();
-    //console.log(docs);
     return(
         <Container>
             <div>

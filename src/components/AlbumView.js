@@ -4,19 +4,7 @@ import Modal from './Modal';
 
 function AlbumView({ match, history }) {
     const {location, year} = match.params;
-    useEffect(()=>{
-        //fetchImages();
-    }, []);
-
-    const [images, setImages] = useState([]);
     const [modalImg, setModalImg] = useState('');
-
-    const fetchImages = async () => {
-        const res = await [];
-        const data = await res.json();
-        setImages(data);
-        console.log(images);
-    }
 
     const handleBack = () => {
         history.goBack();

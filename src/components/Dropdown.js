@@ -37,10 +37,12 @@ function Dropdown({name, options, set}){
             <Label>
                 {`${name} |`}
                 <Select  onChange={e=>handleChange(e)}>
+                    <option value=""></option>
                     {
                         options.map((item, i) => {
                             return <option key={i} value={item}>{item}</option>
                         })
+                        
                     }
                 </Select>
             </Label>

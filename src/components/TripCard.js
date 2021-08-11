@@ -45,7 +45,7 @@ function TripCard({location, year}){
 
 TripCard.propTypes = {
     location: PropTypes.string,
-    year: PropTypes.number,
+    year: PropTypes.string,
 };
 
 export default TripCard;
