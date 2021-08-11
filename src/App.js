@@ -5,7 +5,6 @@ import {
   Link 
 } from "react-router-dom";
 import styled from "styled-components";
-import {CloudinaryContext} from 'cloudinary-react';
 
 import Home from "./components/Home.js";
 import Explore from "./components/Explore.js";
@@ -28,14 +27,12 @@ function App() {
             <li><StyledLink to="/discover">Discover</StyledLink></li>
           </ul>
         </nav>
-        <CloudinaryContext cloudName="memorlee-pics" secure="true" upload_preset="my_unsigned_preset">
-            <Switch>
-              <Route path="/" exact component={()=> <Home data={data}/>}/>
-              <Route path="/explore" exact component={()=> <Explore data={data}/>}/>
-              <Route path="/explore/:location/:year" component={AlbumView}/>
-              <Route path="/discover" component={()=> <Discover data={data}/>}/>
-            </Switch>
-        </CloudinaryContext>
+          <Switch>
+            <Route path="/" exact component={()=> <Home data={data}/>}/>
+            <Route path="/explore" exact component={()=> <Explore data={data}/>}/>
+            <Route path="/explore/:location/:year" component={AlbumView}/>
+            <Route path="/discover" component={()=> <Discover data={data}/>}/>
+          </Switch>
       </Main>
     </Router>
   );

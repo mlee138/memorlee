@@ -13,18 +13,14 @@ function Explore({ data }){
     const [year, setYear] = useState('');
     const [location, setLocation] = useState('');
     const [trips, setTrips] = useState([]);
-
-    async function getTrips(){
-        const result = await queryTrips(year,location);
-        
-        setTrips(result);
-        
-    }
     
     useEffect( ()=>{
-        if(year || location){
-            getTrips();
+        async function getTrips(){
+            const result = await queryTrips(year,location);
+            console.log(result)
+            setTrips(result);
         }
+        getTrips();
     },[year, location]);
 
     return(
@@ -34,7 +30,7 @@ function Explore({ data }){
             <div id="trips">
                 {   trips.length !== 0 &&
                     trips.map((trip,i) => {
-                        return <TripCard key={i} location={trip.location} year={trip.year}/>
+                        return <TripCard key={i} location={trip.name} year={trip.year}/>
                     })
                 }
             </div>

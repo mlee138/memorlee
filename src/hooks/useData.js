@@ -9,14 +9,14 @@ const useData = () => {
         firestore.collection("trips")
             .get()
             .then(snap => {
-                let tempYears = new Set();
-                let tempLocations = new Set();
+                let tempYears = [];
+                let tempLocations = [];
                 snap.forEach(doc => {
-                    tempYears.add(doc.data().year);
-                    tempLocations.add(doc.data().name);
+                    tempYears.push(doc.data().year);
+                    tempLocations.push(doc.data().name);
                 });
-                setYears(Array.from(tempYears).sort());
-                setLocations(Array.from(tempLocations));
+                setYears(tempYears);
+                setLocations(tempLocations);
             })
             .catch((error) => {
                 console.log(`Error getting document: ${error}`);

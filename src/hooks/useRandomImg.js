@@ -1,27 +1,27 @@
-import { doc } from "prettier";
 import { useState, useEffect } from "react";
-import { firestore } from '../firebase/config';
-
+import queryTrips from "../helper/queryTrips";
+// TO BE UPDATED: only gets rand img from cruise 2002
+// CURRENTLY: used to test google storage
 const useRandomImg = ({ years, locations }) => {
-    const [doc, setDoc] = useState();
+    const [url] = useState();
 
     useEffect(() => {
-        const yearsArr = [...years];
-        const locationsArr = [...locations];
-        const randYear = yearsArr[Math.floor(Math.random()*yearsArr.length)];
-        const randLocation = locationsArr[Math.floor(Math.random()*locationsArr.length)];
-        firestore.collection('trips')
-            .where("year", "==", randYear)
-            .where("name", "==", randLocation)
-            .get()
-            .then((snap) => {
-                console.log(snap);
-                
-            })
-            .catch(error => {
-                console.log(`Error getting documents: ${error}`);
-            }) 
-    }, []);
+        let randNum = Math.floor(Math.random()*years.length);
+        const randYear = years[randNum];
+        const randLocation = locations[randNum];
+        async function getRandTrip() {
+            //const res = await queryTrips(randYear, randLocation);
+            const res = await queryTrips("2002", "Cruise");
+            const { images }= await res[0];
 
-    return { doc };
+            //const trip = await queryTrips(randYear, randLocation);
+            const randImg = await images[Math.floor(Math.random()*images.length)]; 
+            console.log(randImg);
+        }
+        getRandTrip();
+    }, [years, locations]);
+
+    return [ url ];
 }
+
+export default useRandomImg;

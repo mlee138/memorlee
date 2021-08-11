@@ -1,6 +1,5 @@
-import React, {useState, useEffect, useContext} from 'react';
+import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
-import {Image} from 'cloudinary-react'
 
 
 function Discover({ data }){
@@ -39,7 +38,7 @@ function Discover({ data }){
     return(
         <Container>
             <div>
-                <Img publicId="sample" />
+                <Image publicId="sample" />
                 <p>What year is this from?</p>
             </div>
             <RadioContainer>
@@ -63,7 +62,7 @@ const Container = styled.div`
     justify-content: space-between;
 `;
 
-const Img = styled(Image)`
+const Image = styled.img`
     width: 75%;
     object-fit: cover;
 `;

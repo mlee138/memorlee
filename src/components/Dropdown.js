@@ -25,6 +25,7 @@ const Select = styled.select`
 `
 
 function Dropdown({name, options, set}){
+    const optionsSet = [...new Set(options)].sort();
 
     const handleChange = (e) =>{
         const value = e.target.value;
@@ -39,7 +40,7 @@ function Dropdown({name, options, set}){
                 <Select  onChange={e=>handleChange(e)}>
                     <option value=""></option>
                     {
-                        options.map((item, i) => {
+                        optionsSet.map((item, i) => {
                             return <option key={i} value={item}>{item}</option>
                         })
                         
