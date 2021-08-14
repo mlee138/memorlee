@@ -13,6 +13,8 @@ import AlbumView from "./components/AlbumView.js";
 import useData from "./hooks/useData";
 import './App.css';
 
+//import getImageList from "./helper/getImageList.js";
+
 function App() {
   const data = useData();
 

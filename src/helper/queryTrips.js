@@ -1,4 +1,4 @@
-import { firestore } from '../firebase/config'
+/*import { firestore } from '../firebase/config'
 
 // README: change useFirestore to take in 3 parameters for query 
 async function queryTrips(year='', location='') {
@@ -49,4 +49,4 @@ function multipleTrips(category, value) {
     })
 }
 
-export default queryTrips;
+export default queryTrips;*/

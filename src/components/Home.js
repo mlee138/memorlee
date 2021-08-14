@@ -1,12 +1,33 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {Link} from 'react-router-dom';
 import styled from 'styled-components';
-import useRandomImg from '../hooks/useRandomImg';
 import ImgSrc from '../images/home-background.jpg';
-
+import useStorage from "../hooks/useStorage";
+import useFirestore from "../hooks/useFirestore";
+import useSingleTrip from "../hooks/useSingleTrip";
+import getDownloadUrls from "../helper/getDownloadUrls";
+/*{
+                    url && <img src={url} alt="uploaded pic"/>
+                } */
 
 function Home({ data }){
-    const [ url ] = useRandomImg(data);
+    const randNum = Math.floor(Math.random()*data.years.length);
+    const randData = {
+                        year: data.years[randNum], 
+                        location: data.locations[randNum]
+                     };
+
+    const [ doc, newTrip ] = useSingleTrip(randData);
+    const [urls, setUrls] = useState([]);
+    //const [ urls, setData ] = useStorage();
+    //const [ url ] = useRandomImg(data);
+
+    useEffect(()=>{
+        if(!Object.entries(doc).length === 0){
+            setUrls(getDownloadUrls(doc));
+            console.log(urls);
+        }
+    }, [doc]);
 
     return(
         <Container>
@@ -18,17 +39,16 @@ function Home({ data }){
                 </StyledLink>
                 <p></p>
             </div>
-            <div>
-                {
-                    url && <img src={url} alt="uploaded pic"/>
-                }
+            <TEST>
                 
-            </div>
+            </TEST>
             
         </Container>
     )
 }
-
+const TEST = styled.div`
+    border: 2px solid blue;
+`;
 //background-image: url(${ImgSrc});
 const Container = styled.div`
     box-sizing: border-box;

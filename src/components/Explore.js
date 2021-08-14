@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import Dropdown from './Dropdown.js';
 import TripCard from './TripCard.js';
 import queryTrips from '../helper/queryTrips.js';
+import useFirestore from '../hooks/useFirestore.js';
+import useSingleTrip from '../hooks/useSingleTrip.js';
 
 const Container = styled.div`
     padding: 2em 20%;
@@ -10,26 +12,20 @@ const Container = styled.div`
 
 function Explore({ data }){
     const {years, locations} = data;
-    const [year, setYear] = useState('');
-    const [location, setLocation] = useState('');
-    const [trips, setTrips] = useState([]);
+    const [ docs, newYear, newLocation ] = useFirestore();
+    
     
     useEffect( ()=>{
-        async function getTrips(){
-            const result = await queryTrips(year,location);
-            console.log(result)
-            setTrips(result);
-        }
-        getTrips();
-    },[year, location]);
+
+    },[]);
 
     return(
         <Container>
-            <Dropdown name="Year" options={years} set={setYear}/>
-            <Dropdown name="Location" options={locations} set={setLocation}/>
+            <Dropdown name="Year" options={years} set={newYear}/>
+            <Dropdown name="Location" options={locations} set={newLocation}/>
             <div id="trips">
-                {   trips.length !== 0 &&
-                    trips.map((trip,i) => {
+                {   docs.length !== 0 &&
+                    docs.map((trip,i) => {
                         return <TripCard key={i} location={trip.name} year={trip.year}/>
                     })
                 }
