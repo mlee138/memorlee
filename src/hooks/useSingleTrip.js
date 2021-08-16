@@ -3,7 +3,7 @@ import { firestore } from '../firebase/config';
 
 function useSingleTrip(tripData) {
     const [trip, setTrip] = useState(tripData);
-    const [doc, setDoc] = useState({});
+    const [urls, setUrls] = useState([]);
 
     function newTrip(newYr, newLoc) {
         if(newYr !== trip.year || newLoc !== trip.location){
@@ -23,16 +23,16 @@ function useSingleTrip(tripData) {
                 snap.forEach(item => {
                     documents.push({...item.data()})
                 })
-                setDoc(documents[0]);
+                setUrls(documents[0].images);
             })
             .catch((error) => {
                 console.log(`Error getting document: ${error}`);
             });
         } else {
-            setDoc({});
+            setUrls([]);
         }
     }, [trip]); 
-    return [ doc, newTrip];
+    return [ urls, newTrip];
 }
 
 export default useSingleTrip;

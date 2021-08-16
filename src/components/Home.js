@@ -17,17 +17,16 @@ function Home({ data }){
                         location: data.locations[randNum]
                      };
 
-    const [ doc, newTrip ] = useSingleTrip(randData);
-    const [urls, setUrls] = useState([]);
-    //const [ urls, setData ] = useStorage();
-    //const [ url ] = useRandomImg(data);
+    const [ urls ] = useSingleTrip(randData);
+    const [ randUrl, setRandUrl] = useState('');
+    //const [ docs ] = useFirestore("2002", "cruise");
 
-    useEffect(()=>{
-        if(!Object.entries(doc).length === 0){
-            setUrls(getDownloadUrls(doc));
-            console.log(urls);
+    useEffect(()=> {
+        if (urls) {
+            const randNum = Math.floor(Math.random()* urls.length);
+            setRandUrl(urls[randNum]);
         }
-    }, [doc]);
+    }, [urls])
 
     return(
         <Container>
@@ -37,18 +36,17 @@ function Home({ data }){
                 <StyledLink to="/explore">
                     Explore the Past 
                 </StyledLink>
-                <p></p>
             </div>
-            <TEST>
-                
-            </TEST>
+            <div>
+                { 
+                    randUrl && <img src={randUrl} alt='downloaded image'/> 
+                }
+            </div>
             
         </Container>
     )
 }
-const TEST = styled.div`
-    border: 2px solid blue;
-`;
+
 //background-image: url(${ImgSrc});
 const Container = styled.div`
     box-sizing: border-box;

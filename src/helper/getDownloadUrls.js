@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { storage } from '../firebase/config'
 // TO BE UPDATED: only gets rand img from cruise 2002
 // CURRENTLY: used to test google storage
@@ -21,7 +22,7 @@ const getDownloadUrls = (doc) => {
     images.forEach(image => {
         storage.refFromURL(image).getDownloadURL()
             .then((url) => {
-                //urlList.push(`<img src='${url}' alt='downloaded image'/>`);
+                console.log(urlList);
                 urlList.push(url);
             })
             .catch((error)=> {

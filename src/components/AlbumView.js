@@ -1,9 +1,11 @@
 import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
 import Modal from './Modal';
+import useSingleTrip from '../hooks/useSingleTrip';
 
 function AlbumView({ match, history }) {
     const {location, year} = match.params;
+    const [ urls ] = useSingleTrip(match.params);
     const [modalImg, setModalImg] = useState('');
 
     const handleBack = () => {
@@ -23,7 +25,11 @@ function AlbumView({ match, history }) {
             <Button onClick={handleBack}>&lt; Go back</Button>
             <h1>{location}</h1>
             <h2>{year}</h2>
-            <img onClick={(e) => showModal(e)} src="../images/home-background.jpg" alt="closeup on bees and violet flower"/>
+            <div>
+                { 
+                    urls && urls.map((url, i) => <img key={i} src={url} onClick={(e) => showModal(e)} alt='downloaded image'/>)
+                }
+            </div>
             { modalImg ? <Modal closeModal={closeModal} url={modalImg}/> : null }
         </Container>
     )

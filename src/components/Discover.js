@@ -1,24 +1,34 @@
 import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
+import useSingleTrip from '../hooks/useSingleTrip';
 
 
 function Discover({ data }){
     const { years, locations } = data;
+    const randNum = Math.floor(Math.random()*years.length);
+    const randYear = years[randNum];
+    const randLocation = years[randLocation];
+    const [ urls ] = useSingleTrip({
+                                        year: randYear, 
+                                        location: randLocation
+                                    });
     const [choices, setChoices] = useState([]);
     //const [answer, setAnswer] = useState();
 
     useEffect(()=>{
-        newQuestion();
+        newQuestion(randYear, randLocation);
     },[])
 
-    const newQuestion = () => {
+    const newQuestion = (year, location) => {
         //ADD CODE TO SPLICE IN THE CORRECT ANSWER
         let rand = Math.floor(Math.random()*2)
-        let arr;
+        let arr, correctValue;
         if (rand === 0){
             arr = years;
+            correctValue = year;
         } else {
             arr = locations;
+            correctValue = location;
         }
         let indexArr = [];
         while (indexArr.length < 3) {
