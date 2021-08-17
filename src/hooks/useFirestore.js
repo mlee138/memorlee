@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { firestore } from '../firebase/config';
 
 function useFirestore(yr, loc) {
@@ -26,41 +26,43 @@ function useFirestore(yr, loc) {
         }
     }
 
-    function singleTrip() {
-        firestore.collection("trips")
-        .where("year", "==", year)
-        .where("name", "==", location)
-        .get()
-        .then(snap => {
-            let documents = [];
-            snap.forEach(doc => {
-                documents.push({...doc.data()});
-            });
-            setDocs(documents)
-        })
-        .catch((error) => {
-            console.log(`Error getting document: ${error}`);
-        });
-    }
     
-    function multipleTrips(category, value) {
-        firestore.collection("trips")
-        .where(category, "==", value)
-        .get()
-        .then(snap => {
-            let documents = [];
-            snap.forEach(doc => {
-                documents.push({...doc.data()});
-            });
-            setDocs(documents)
-        })
-        .catch((error) => {
-            console.log(`Error getting document: ${error}`);
-        });
-    }
     
 
     useEffect( ()=>{
+        function singleTrip() {
+            firestore.collection("trips")
+            .where("year", "==", year)
+            .where("name", "==", location)
+            .get()
+            .then(snap => {
+                let documents = [];
+                snap.forEach(doc => {
+                    documents.push({...doc.data()});
+                });
+                setDocs(documents)
+            })
+            .catch((error) => {
+                console.log(`Error getting document: ${error}`);
+            });
+        }
+        
+        function multipleTrips(category, value) {
+            firestore.collection("trips")
+            .where(category, "==", value)
+            .get()
+            .then(snap => {
+                let documents = [];
+                snap.forEach(doc => {
+                    documents.push({...doc.data()});
+                });
+                setDocs(documents)
+            })
+            .catch((error) => {
+                console.log(`Error getting document: ${error}`);
+            });
+        }
+
         if(year && location) {
             singleTrip(year, location);
         } else if (year || location) {

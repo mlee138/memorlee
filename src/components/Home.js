@@ -1,14 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import {Link} from 'react-router-dom';
 import styled from 'styled-components';
-import ImgSrc from '../images/home-background.jpg';
-import useStorage from "../hooks/useStorage";
-import useFirestore from "../hooks/useFirestore";
 import useSingleTrip from "../hooks/useSingleTrip";
-import getDownloadUrls from "../helper/getDownloadUrls";
-/*{
-                    url && <img src={url} alt="uploaded pic"/>
-                } */
+//import ImgSrc from '../images/home-background.jpg';
 
 function Home({ data }){
     const randNum = Math.floor(Math.random()*data.years.length);
@@ -17,16 +11,7 @@ function Home({ data }){
                         location: data.locations[randNum]
                      };
 
-    const [ urls ] = useSingleTrip(randData);
-    const [ randUrl, setRandUrl] = useState('');
-    //const [ docs ] = useFirestore("2002", "cruise");
-
-    useEffect(()=> {
-        if (urls) {
-            const randNum = Math.floor(Math.random()* urls.length);
-            setRandUrl(urls[randNum]);
-        }
-    }, [urls])
+    const [ url ] = useSingleTrip(randData);
 
     return(
         <Container>
@@ -39,7 +24,7 @@ function Home({ data }){
             </div>
             <div>
                 { 
-                    randUrl && <img src={randUrl} alt='downloaded image'/> 
+                    url && <Image src={url} alt='random vacation'/> 
                 }
             </div>
             

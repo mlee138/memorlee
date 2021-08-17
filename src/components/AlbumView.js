@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
 import Modal from './Modal';
 import useSingleTrip from '../hooks/useSingleTrip';
@@ -27,7 +27,7 @@ function AlbumView({ match, history }) {
             <h2>{year}</h2>
             <div>
                 { 
-                    urls && urls.map((url, i) => <img key={i} src={url} onClick={(e) => showModal(e)} alt='downloaded image'/>)
+                    urls && urls.map((url, i) => <img key={i} src={url} onClick={(e) => showModal(e)} alt={`vacation at ${location} ${year}`}/>)
                 }
             </div>
             { modalImg ? <Modal closeModal={closeModal} url={modalImg}/> : null }

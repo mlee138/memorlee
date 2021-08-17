@@ -1,19 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { firestore } from '../firebase/config';
 
 function useSingleTrip(tripData) {
     const [trip, setTrip] = useState(tripData);
-    const [urls, setUrls] = useState([]);
+    const [url, setUrl] = useState('');
 
     function newTrip(newYr, newLoc) {
         if(newYr !== trip.year || newLoc !== trip.location){
-            console.log(3);
             setTrip({year: newYr, location: newLoc});
         }
     }
 
     useEffect( ()=>{
-        if(trip && trip.year && trip.location) {
+        if(trip.year && trip.location) {
             firestore.collection("trips")
             .where("year", "==", trip.year)
             .where("name", "==", trip.location)
@@ -23,16 +22,17 @@ function useSingleTrip(tripData) {
                 snap.forEach(item => {
                     documents.push({...item.data()})
                 })
-                setUrls(documents[0].images);
+                const randIndex = Math.floor(Math.random()*documents[0].images.length); 
+                setUrl(documents[0].images[randIndex]);
             })
             .catch((error) => {
                 console.log(`Error getting document: ${error}`);
             });
         } else {
-            setUrls([]);
+            setUrl('');
         }
     }, [trip]); 
-    return [ urls, newTrip];
+    return [ url, newTrip];
 }
 
 export default useSingleTrip;

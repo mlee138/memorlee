@@ -4,59 +4,79 @@ import useSingleTrip from '../hooks/useSingleTrip';
 
 
 function Discover({ data }){
-    const { years, locations } = data;
-    const randNum = Math.floor(Math.random()*years.length);
-    const randYear = years[randNum];
-    const randLocation = years[randLocation];
-    const [ urls ] = useSingleTrip({
-                                        year: randYear, 
-                                        location: randLocation
-                                    });
+    const [years] = useState(data.years);
+    const [locations] = useState(data.locations);
+    const [url, newTrip] = useSingleTrip({ year: '', location:''});
+    const [question, setQuestion] = useState('');
     const [choices, setChoices] = useState([]);
-    //const [answer, setAnswer] = useState();
+    const [answer, setAnswer] = useState('');
 
     useEffect(()=>{
-        newQuestion(randYear, randLocation);
+        if(years.length && locations.length){
+            newQuestion();
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
 
-    const newQuestion = (year, location) => {
-        //ADD CODE TO SPLICE IN THE CORRECT ANSWER
-        let rand = Math.floor(Math.random()*2)
-        let arr, correctValue;
-        if (rand === 0){
-            arr = years;
-            correctValue = year;
+    const newQuestion = () => {
+        const yearSet = [...new Set(years)];
+        const locationSet = [...new Set(locations)];
+
+        const randIndex = Math.floor(Math.random()*years.length);
+        const randYear = years[randIndex];
+        const randLocation = locations[randIndex];
+        
+        newTrip(randYear, randLocation);
+
+        let arr, correctValue, q;
+        if (Math.floor(Math.random()*2) === 0){
+            arr = yearSet;
+            correctValue = yearSet.indexOf(randYear);
+            q = 'Where was this photo taken?';
         } else {
-            arr = locations;
-            correctValue = location;
+            arr = locationSet;
+            correctValue = locationSet.indexOf(randLocation);
+            q = 'What year was this photo taken?';
         }
-        let indexArr = [];
-        while (indexArr.length < 3) {
-            rand = Math.floor(Math.random()*(arr.length-1));
-            if (indexArr.indexOf(rand) === -1)
-                indexArr.push(rand);
+        let indexSet = new Set();
+        while (indexSet.size < 3) {
+            let rand = Math.floor(Math.random()*arr.length);
+            if(rand !== correctValue){
+                indexSet.add(rand);    
+            }
         }
-        setChoices( indexArr.map(index => arr[index]) );
+        let newChoices =  [...indexSet];
+        newChoices.splice(
+                    Math.floor(Math.random()*indexSet.size),
+                    0,
+                    correctValue);
+        setQuestion(q);
+        setAnswer(arr[correctValue]);
+        setChoices( newChoices.map(index => arr[index]) );
         
     }
 
     const checkAnswer = (e) => {
         const choice = e.target.innerHTML;
-        console.log(choice);
+        if(choice === answer){
+            e.target.style.backgroundColor = "blue";
+        } else {
+            e.target.style.backgroundColor = "red"; 
+        }
     }
 
     return(
         <Container>
             <div>
-                <Image publicId="sample" />
-                <p>What year is this from?</p>
+                <Image src={url} alt={`${answer} vacation`} />
+                <p>{question}</p>
             </div>
             <RadioContainer>
-                {
+                {   (choices.length !== 0) &&
                     choices.map((choice, i) => {
-                        return  <div>
-                                    <Radio type="radio" id={choice} value="choice" name="question"/>
-                                    <Label onClick={(e) => checkAnswer(e)} key={i} for={choice}>{choice}</Label>
+                        return  <div key={i}>
+                                    <Radio type="radio" id={choice} value={choice} name="question"/>
+                                    <Label onClick={(e) => checkAnswer(e)} htmlFor={choice}>{choice}</Label>
                                 </div>
                     })
                 }
@@ -85,6 +105,7 @@ const RadioContainer = styled.div`
     & input[type="radio"]:checked+label{
         background-color: #3a953b;
     }
+
 `;
 
 const Label = styled.label`
@@ -95,6 +116,10 @@ const Label = styled.label`
     box-sizing: border-box;
     width: 140px;
     text-align:center;
+
+    &:hover {
+        background-color: #2fbb31;
+    }
 `;
 
 const Radio = styled.input`

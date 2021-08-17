@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { storage } from '../firebase/config'
 // TO BE UPDATED: only gets rand img from cruise 2002
 // CURRENTLY: used to test google storage

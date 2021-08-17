@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { storage } from '../firebase/config'
-import queryTrips from "../helper/queryTrips";
 // TO BE UPDATED: only gets rand img from cruise 2002
 // CURRENTLY: used to test google storage
 const useStorage = (doc, random=0) => {
