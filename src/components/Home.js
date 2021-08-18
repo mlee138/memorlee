@@ -1,6 +1,6 @@
 import React from "react";
 import {Link} from 'react-router-dom';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import useSingleTrip from "../hooks/useSingleTrip";
 //import ImgSrc from '../images/home-background.jpg';
 
@@ -33,7 +33,7 @@ function Home({ data }){
 const Container = styled.div`
     display: grid;
     box-sizing: border-box;
-    color: white;
+    color: var(--font-color);
     background-size: cover;
     height: 100vh;
 `;
@@ -44,47 +44,56 @@ const TextContainer = styled.div`
     justify-content: center;
     align-items: flex-start;
     z-index: 2;
-    width: 100%;
+    width: 90%;
     height: 100%;
     padding-left: 10em;
     box-sizing: border-box;
-    background-image: linear-gradient(to right, hsla(227, 11%, 15%, 1), hsla(227, 11%, 15%, 1), hsla(227, 11%, 15%, 0));
+    background-image: linear-gradient(to right, #f5ebcf, var(--bg-color), hsla(44, 21%, 63%, 0));
+`;
+
+const Subtitle = styled.h2`
+    margin: 0;
+    margin-bottom: 1rem;
+    font-size: 2.25rem;
+    font-weight: 300;
+    font-style: italic;
+    width: 75%;
+    opacity: 0.9;
 `;
 
 const Title = styled.h1`
-    font-size: 6rem;
-    text-shadow: 5px 5px 5px hsl(0, 0%, 10%);
-    margin-bottom: 20px;
+    font-size: 7rem;
+    font-weight: bold;
+    opacity: 0.9;
+    margin: 0;
+    margin-bottom: 2rem;
     small {
         font-size: 60%;
     }
 `;
 
-const Subtitle = styled.h2`
-    font-size: 2.25rem;
-    margin: 0;
-    width: 75%;
-    text-shadow: 5px 5px 5px hsl(0, 0%, 10%);
-`;
-
 const StyledLink = styled(Link)`
     padding: 1rem 2rem;
-    background-color: hsla(141, 65%, 46%, 1);
+    background-color: var(--btn-color);
     border: none;
     border-radius: 10px;
-    box-shadow: 5px 5px 5px hsl(0, 0%, 10%);
-    color: white;
+    box-shadow: var(--shadow);
+    color: hsla(0, 0%, 0%, 0.9);
     text-decoration: none;
     font-size: 1rem;
     cursor: pointer;
 
     &:hover {
-        background-color: hsla(141, 85%, 46%, 1);
+        background-color: var(--btn-hover-color);
     }
 
     &:active {
-        background-color: hsla(141, 35%, 46%, 1);
+        background-color: var(--btn-active-color);
     }
+`;
+const fadeIn = keyframes`
+    0% { opacity: 0; }
+    100% { opacity: 1; }
 `;
 
 const Image = styled.img`
@@ -93,13 +102,19 @@ const Image = styled.img`
     top:0;
     bottom: 0;
     box-sizing: border-box;
-    box-shadow: 7px 7px 7px hsl(0, 0%, 15%);
     height: 100%;
     width: 70%;
     object-fit: cover;
     z-index: 0;
-    filter: sepia(80%);
+    filter: sepia(75%);
+
+    opacity: 0;
+    animation-name: ${fadeIn};
+    animation-duration: 2s;
+    animation-delay:1s;
+    animation-fill-mode: forwards;
 `;
+
 
 
 export default Home;

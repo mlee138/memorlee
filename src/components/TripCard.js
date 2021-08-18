@@ -31,13 +31,12 @@ const StyledLink = styled(Link)`
 const Card = styled.div`
     display: flex;
     height: 150px;
-    border: 1px solid black;
     border-radius: 5px;
     box-sizing: border-box;
-    box-shadow: 5px 5px 5px hsl(0, 0%, 10%);
+    box-shadow: var(--shadow);
     margin: 2em 0em;
     padding-left: 1em;
-    background-color: #404856; 
+    background-color: #b7bb8f; 
 `;
 
 const CardText = styled.div`

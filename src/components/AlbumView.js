@@ -24,8 +24,8 @@ function AlbumView({ match, history }) {
         
         <Container>
             <Button onClick={handleBack}>&lt; Go back</Button>
-            <h1>{location}</h1>
-            <h2>{year}</h2>
+            <H1>{location}</H1>
+            <H2>{year}</H2>
             <ImageGrid>
                 { 
                     docs.length !== 0 && docs[0].images.map((url, i) => {
@@ -48,6 +48,13 @@ function AlbumView({ match, history }) {
 const Container = styled.div`
     padding: 2em 20%;
 `
+const H1 = styled.h1`
+    
+`;
+
+const H2 = styled.h2`
+    font-style: italic;
+`;
 
 const Button = styled.button`
     background: rgba(255,255,255, 0);
@@ -84,7 +91,7 @@ const Image = styled.img`
     width: 100%;
     height: 100%;
     object-fit: cover; 
-    box-shadow: 4px 4px 4px hsl(240, 3%, 7%)
+    box-shadow: var(--shadow);
 `;
 
 export default AlbumView;

@@ -23,6 +23,7 @@ const Container = styled.div`
     height: 100%;
 
     background-color: hsla(0, 0%, 0%, 0.8);
+    z-index: 100;
 
 `;
 

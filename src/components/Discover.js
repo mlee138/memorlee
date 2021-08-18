@@ -25,10 +25,10 @@ function Discover({ data }){
 
     const resetButtons = () => {
         setUserChoice('');
-        promptRef.current.style.backgroundColor = "hsl(240, 5%, 28%)";
+        promptRef.current.style.backgroundColor = "#b7bb8f";
         const radios = radiosRef.current.children;
         for(let i=0; i<radios.length; i++){
-            radios[i].children[1].style.backgroundColor = "hsl(107, 7%, 89%)";
+            radios[i].children[1].style.backgroundColor = "#dee0cc";
         }
     }
 
@@ -83,12 +83,12 @@ function Discover({ data }){
         //console.log(e);
         if(value === answer){
             //e.target.style.backgroundColor = "hsl(107, 74%, 71%)";
-            promptRef.current.style.backgroundColor = "green";
+            promptRef.current.style.backgroundColor = "#93c993";
             setUserChoice("correct");
             setPrompt(`${answer} was correct! Play again?`)
         } else {
             //e.target.style.backgroundColor = "hsl(0, 74%, 62%)"; 
-            promptRef.current.style.backgroundColor = "red";
+            promptRef.current.style.backgroundColor = "#fe7f7f";
             setUserChoice("incorrect");
             setPrompt(`Incorrect, it was ${answer}! Play again?`)
         }
@@ -144,6 +144,7 @@ const QuestionContainer = styled.div`
     width: 100%;
     min-height: 300px;
     margin-right: 40px;
+    box-shadow: var(--shadow);
 `;
 
 const ImageContainer = styled.div`
@@ -161,10 +162,10 @@ const Prompt = styled.div`
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    min-height: 15%;
+    max-height: 15%;
     padding: 1rem 2rem;
     box-sizing: border-box;
-    background-color: #52525b;
+    background-color: #b7bb8f;
     font-size: 1.5rem;
 `;
 
@@ -205,8 +206,8 @@ const RadioContainer = styled.div`
 
 const Label = styled.label`
     display: block;
-    box-shadow: 0px 4px 4px hsl(0, 0%, 10%);
-    background-color: hsl(107, 7%, 89%);
+    box-shadow: 2px 2px 4px #828282;
+    background-color: #dee0cc;
     border-radius: 5px;
     padding: 0.5em 1em;
     box-sizing: border-box;

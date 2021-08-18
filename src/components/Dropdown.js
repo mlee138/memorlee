@@ -4,12 +4,13 @@ import PropTypes from 'prop-types';
 
 const SelectWrap = styled.div`
     display: inline-block;
-    border: 3px solid #87de9e;
+    border: 3px solid #afba4c;
+    box-sizing: border-box;
     border-radius: 20px;
     padding: 0 0.9em;
     margin: 1em;
     cursor: pointer;
-    background-color: #87de9e;
+    background-color: var(--btn-color);
     color: black;
 `
 
@@ -18,10 +19,11 @@ const Label = styled.label`
 `
 
 const Select = styled.select`
-    background-color: #87de9e;
+    background-color: var(--btn-color);
     border: none;
     padding: 0.6em 0.4em;
     cursor: inherit;
+    outline: none;
 `
 
 function Dropdown({name, options, set}){
