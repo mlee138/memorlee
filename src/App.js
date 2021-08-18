@@ -21,14 +21,14 @@ function App() {
   return (
     <Router>
       <Main>
-        <nav>
+        <Nav>
           <StyledLink to="/">memorlee</StyledLink>
           <ul>
             <li><StyledLink to="/">Home</StyledLink></li>
             <li><StyledLink to="/explore">Explore</StyledLink></li>
             <li><StyledLink to="/discover">Discover</StyledLink></li>
           </ul>
-        </nav>
+        </Nav>
           <Switch>
             <Route path="/" exact component={()=> <Home data={data}/>}/>
             <Route path="/explore" exact component={()=> <Explore data={data}/>}/>
@@ -40,6 +40,12 @@ function App() {
   );
 }
 
+const Nav = styled.nav`
+  position: fixed;
+  top:0;
+  left:0;
+  right: 0;
+`;
 
 const Main = styled.main`
   background-color: var(--bg-color);
