@@ -8,7 +8,7 @@ import './Discover.css';
 function Discover({ data }){
     const [years] = useState(data.years);
     const [locations] = useState(data.locations);
-    //const [url, newTrip] = useSingleTrip({ year: '', location:''});
+    const [url, newTrip] = useSingleTrip({ year: '', location:''});
     const [prompt, setPrompt] = useState('');
     const [choices, setChoices] = useState([]);
     const [answer, setAnswer] = useState('');
@@ -42,7 +42,7 @@ function Discover({ data }){
         const randYear = years[randIndex];
         const randLocation = locations[randIndex];
         
-        //newTrip(randYear, randLocation);
+        newTrip(randYear, randLocation);
 
         let arr, correctValue, q;
         //choose a year or location question
@@ -95,12 +95,12 @@ function Discover({ data }){
         e.target.checked = false;
         
     }
-//<Image src={url} alt={`${answer} vacation`} />
+//
     return(
         <Container>
             <QuestionContainer>
                 <ImageContainer>
-                    
+                    <Image src={url} alt={`${answer} vacation`} />
                 </ImageContainer>
                 <Prompt ref={promptRef}>
                     <p>{prompt}</p>
@@ -120,7 +120,7 @@ function Discover({ data }){
                                         id={choice} 
                                         value={choice} 
                                         name="choices"
-                                        disabled={userChoice}
+                                        disabled={userChoice ? true : false}
                                         onChange={(e) => checkAnswer(e)}/>
                                     <Label htmlFor={choice} >
                                             {choice}

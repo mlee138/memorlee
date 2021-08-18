@@ -1,6 +1,6 @@
 :root {
   --font-color: #e9eaea;
-  --bg-color: #23252c;
+  --bg-color: hsl(227, 11%, 15%);
 }
 
 body {

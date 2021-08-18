@@ -25,7 +25,7 @@ function Explore({ data }){
             <div id="trips">
                 {   docs.length !== 0 &&
                     docs.map((trip,i) => {
-                        return <TripCard key={i} location={trip.name} year={trip.year}/>
+                        return <TripCard key={i} location={trip.name} year={trip.year} cover={trip.cover}/>
                     })
                 }
             </div>

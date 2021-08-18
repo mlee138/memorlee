@@ -12,34 +12,43 @@ function Home({ data }){
                      };
 
     const [ url ] = useSingleTrip(randData);
-
+// {
+//     url && <Image src={url} alt="random vacation"/>
+// }
     return(
         <Container>
-            <div>
-                <Subtitle>Never forget the</Subtitle>
+            <TextContainer>
+                <Subtitle>We'll always have the</Subtitle>
                 <Title>memorlee<small>s</small></Title>
                 <StyledLink to="/explore">
-                    Explore the Past 
+                    Relive the Past 
                 </StyledLink>
-            </div>
-            <div>
-                { 
-                    url && <Image src={url} alt='random vacation'/> 
-                }
-            </div>
+            </TextContainer>
+            <Image src={url} alt="I odn't remember"/>
             
         </Container>
     )
 }
 
-//background-image: url(${ImgSrc});
 const Container = styled.div`
+    display: grid;
     box-sizing: border-box;
-    padding: 8rem;
     color: white;
-    display: flex;
-    
     background-size: cover;
+    height: 100vh;
+`;
+
+const TextContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    padding-left: 10em;
+    box-sizing: border-box;
+    background-image: linear-gradient(to right, hsla(227, 11%, 15%, 1), hsla(227, 11%, 15%, 1), hsla(227, 11%, 15%, 0));
 `;
 
 const Title = styled.h1`
@@ -79,12 +88,17 @@ const StyledLink = styled(Link)`
 `;
 
 const Image = styled.img`
-    border: 30px solid white;
+    position: absolute;
+    right:0;
+    top:0;
+    bottom: 0;
     box-sizing: border-box;
     box-shadow: 7px 7px 7px hsl(0, 0%, 15%);
-    height: 75%;
-    width: 100%;
+    height: 100%;
+    width: 70%;
     object-fit: cover;
+    z-index: 0;
+    filter: sepia(80%);
 `;
 
 

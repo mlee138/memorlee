@@ -22,13 +22,13 @@ const Container = styled.div`
     width: 100%;
     height: 100%;
 
-    background-color: hsla(0, 0%, 0%, 0.5);
+    background-color: hsla(0, 0%, 0%, 0.8);
 
 `;
 
 const Image = styled.img`
-    width: 50%;
-    height: 50%;
+    width: 75%;
+    height: 75%;
     object-fit: contain;
 `;
 
