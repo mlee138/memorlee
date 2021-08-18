@@ -1,0 +1,16 @@
+.hide {
+    display: none;
+}
+
+.correct {
+    background-color: green;
+}
+
+.incorrect {
+    background-color: red;
+}
+
+input[type="radio"]:checked+label{
+    background-color: #3a953b;
+    font-weight: bold;
+}

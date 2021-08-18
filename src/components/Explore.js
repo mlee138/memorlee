@@ -5,7 +5,8 @@ import TripCard from './TripCard.js';
 import useFirestore from '../hooks/useFirestore.js';
 
 const Container = styled.div`
-    padding: 2em 20%;
+    padding: 5em 20%;
+    min-height: 100%;
 `
 
 function Explore({ data }){
