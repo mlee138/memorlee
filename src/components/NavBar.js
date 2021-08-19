@@ -94,8 +94,7 @@ const MenuOptions = styled.ul`
     left: 0;
     right: 0;
     &.open li{
-      opacity: 1;
-      transform: translateX(0px);
+      display: block;
     }
   }
 `;
@@ -108,8 +107,7 @@ const Option = styled.li`
     width: 100%;
     text-align: center;
     transition: all 0.5s ease-in-out;
-    opacity: 0;
-    transform: translateX(-100%);
+    display: none;
   }
 `;
 
