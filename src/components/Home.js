@@ -66,7 +66,7 @@ const Subtitle = styled.h2`
     opacity: 0.9;
 
     @media screen and (max-width: 500px){
-        font-size: 2.5rem;
+        font-size: 1.5rem;
         text-shadow: var(--shadow);
     }
 `;
@@ -82,7 +82,7 @@ const Title = styled.h1`
     }
 
     @media screen and (max-width: 500px){
-        font-size: 4rem;
+        font-size: 3rem;
         text-shadow: var(--shadow);
     }
 `;
