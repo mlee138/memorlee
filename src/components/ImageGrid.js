@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import queryTrips from '../helper/queryTrips';
 
 function ImageGrid(year, location) {
 

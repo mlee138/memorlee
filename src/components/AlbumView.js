@@ -9,6 +9,7 @@ function AlbumView({ match, history }) {
     const [modalImg, setModalImg] = useState('');
 
     const handleBack = () => {
+        console.log("back btn clicked")
         history.goBack();
     }
 
@@ -23,9 +24,9 @@ function AlbumView({ match, history }) {
     return (
         
         <Container>
-            <Button onClick={handleBack}>&lt; Go back</Button>
-            <H1>{location}</H1>
-            <H2>{year}</H2>
+            <Button onTouchStart={handleBack} onClick={handleBack}>&lt; Back</Button>
+            <h1>{location}</h1>
+            <h2>{year}</h2>
             <ImageGrid>
                 { 
                     docs.length !== 0 && docs[0].images.map((url, i) => {
@@ -47,14 +48,15 @@ function AlbumView({ match, history }) {
 
 const Container = styled.div`
     padding: 2em 20%;
-`
-const H1 = styled.h1`
-    
-`;
+    text-align: center;
+    position: relative;
+    font-size: 1.5em;
 
-const H2 = styled.h2`
-    font-style: italic;
-`;
+    @media screen and (max-width: 500px){
+        padding: 4em 15px;
+        font-size: 1em;
+    }
+`
 
 const Button = styled.button`
     background: rgba(255,255,255, 0);
@@ -62,16 +64,17 @@ const Button = styled.button`
     color: var(--font-color);
     margin-top: 2em;
     padding: 0.5em 1em;
-    font-size: 1.5rem;
+    font-size: 1rem;
     cursor: pointer;
 
     &:hover { 
-        background: rgba(255,255,255, 0.1);
+        background: rgba(255,255,255, 0.5);
     }
 
     &:active {
-        background: rgba(255,255,255, 0.25);
+        background: rgba(255,255,255, 0.75);
     }
+
 `;
 
 const ImageGrid = styled.div`
@@ -79,11 +82,16 @@ const ImageGrid = styled.div`
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     grid-template-rows: repeat(auto-fill, minmax(150px, 1fr));
     grid-gap: 2em;
+    @media screen and (max-width: 500px){
+        grid-gap: 0.5em;
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        grid-template-rows: repeat(auto-fill, minmax(100px, 1fr));
+    }
 `;
 
 const ImageContainer = styled.div`
-    width: 200px;
-    height: 150px;
+    width: 100%;
+    height: 100%;
     background-color: black;
 `;
 

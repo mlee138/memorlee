@@ -2,10 +2,9 @@ import {
   BrowserRouter as Router, 
   Route, 
   Switch,
-  Link 
 } from "react-router-dom";
 import styled from "styled-components";
-
+import NavBar from './components/NavBar.js';
 import Home from "./components/Home.js";
 import Explore from "./components/Explore.js";
 import Discover from "./components/Discover.js";
@@ -17,18 +16,12 @@ import './App.css';
 
 function App() {
   const data = useData();
+  
 
   return (
     <Router>
       <Main>
-        <Nav>
-          <StyledLink to="/">memorlee</StyledLink>
-          <ul>
-            <li><StyledLink to="/">Home</StyledLink></li>
-            <li><StyledLink to="/explore">Explore</StyledLink></li>
-            <li><StyledLink to="/discover">Discover</StyledLink></li>
-          </ul>
-        </Nav>
+          <NavBar/>
           <Switch>
             <Route path="/" exact component={()=> <Home data={data}/>}/>
             <Route path="/explore" exact component={()=> <Explore data={data}/>}/>
@@ -40,25 +33,10 @@ function App() {
   );
 }
 
-const Nav = styled.nav`
-  position: fixed;
-  top:0;
-  left:0;
-  right: 0;
-  z-index: 10;
-`;
-
 const Main = styled.main`
   background-color: var(--bg-color);
   color: var(--font-color);
   min-height: 100vh;
-`;
-
-const StyledLink = styled(Link)`
-  color: white;
-  text-decoration: none;
-  margin: 1rem;
-  position: relative;
 `;
 
 export default App;

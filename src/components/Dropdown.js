@@ -12,6 +12,8 @@ const SelectWrap = styled.div`
     cursor: pointer;
     background-color: var(--btn-color);
     color: black;
+
+    
 `
 
 const Label = styled.label`
@@ -22,7 +24,7 @@ const Select = styled.select`
     background-color: var(--btn-color);
     border: none;
     padding: 0.6em 0.4em;
-    cursor: inherit;
+    cursor: pointer;
     outline: none;
 `
 

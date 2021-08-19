@@ -9,35 +9,10 @@
   --btn-hover-color: hsl(66, 56%, 65%);
   --btn-active-color: hsl(66, 56%, 48%);
   --shadow: 3px 3px 4px hsl(44, 10%, 30%);
-  
 }
 
 body {
   margin: 0;
   padding: 0;
   font-family: var(--font);
-}
-
-nav {
-  position: sticky;
-  top: 0;
-  background-color: var(--nav-color);
-  display: flex;
-  padding: 0 1.5rem;
-  justify-content: space-between;
-  align-items: center;
-}
-
-#logo {
-  color: white;
-}
-
-ul{
-  margin: 0;
-  display: flex;
-
-}
-
-li {
-  list-style: none;
 }

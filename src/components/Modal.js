@@ -22,15 +22,19 @@ const Container = styled.div`
     width: 100%;
     height: 100%;
 
-    background-color: hsla(0, 0%, 0%, 0.8);
+    background-color: hsla(0, 0%, 0%, 0.85);
     z-index: 100;
-
 `;
 
 const Image = styled.img`
     width: 75%;
     height: 75%;
     object-fit: contain;
+
+    @media screen and (max-width: 500px){
+        width: 90%;
+        height: 90%;    
+    }
 `;
 
 Modal.propTypes = {

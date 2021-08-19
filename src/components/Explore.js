@@ -7,6 +7,10 @@ import useFirestore from '../hooks/useFirestore.js';
 const Container = styled.div`
     padding: 5em 20%;
     min-height: 100%;
+
+    @media screen and (max-width: 500px){
+        padding: 4em 0;
+    }
 `
 
 function Explore({ data }){

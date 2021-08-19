@@ -1,9 +1,7 @@
 import React, {useState, useEffect, useRef} from 'react';
 import styled from 'styled-components';
 import useSingleTrip from '../hooks/useSingleTrip';
-import './Discover.css';
-
-
+import { fadeIn } from '../animations/fade';
 
 function Discover({ data }){
     const [years] = useState(data.years);
@@ -95,6 +93,10 @@ function Discover({ data }){
         e.target.checked = false;
         
     }
+
+    const radioPressed = (e) => {
+        e.target.style.backgroundColor = "#b1b3a2";
+    }
 //
     return(
         <Container>
@@ -122,7 +124,9 @@ function Discover({ data }){
                                         name="choices"
                                         disabled={userChoice ? true : false}
                                         onChange={(e) => checkAnswer(e)}/>
-                                    <Label htmlFor={choice} >
+                                    <Label 
+                                        htmlFor={choice} 
+                                        onClick={(e) => radioPressed(e)}>
                                             {choice}
                                     </Label>
                                 </div>
@@ -138,6 +142,28 @@ const Container = styled.div`
     padding: 5em 20%;
     display: flex;
     justify-content: space-between;
+    
+    @media screen and (max-width: 500px){
+        flex-direction: column;
+        padding: 3em 0;
+    }
+
+    .hide {
+        display: none;
+    }
+    
+    .correct {
+        background-color: green;
+    }
+    
+    .incorrect {
+        background-color: red;
+    }
+    
+    input[type="radio"]:checked+label{
+        background-color: #3a953b;
+        font-weight: bold;
+    }
 `;
 
 const QuestionContainer = styled.div`
@@ -145,6 +171,11 @@ const QuestionContainer = styled.div`
     min-height: 300px;
     margin-right: 40px;
     box-shadow: var(--shadow);
+
+    @media screen and (max-width: 500px){
+        width: 100%;
+        max-height: 50%;
+    }
 `;
 
 const ImageContainer = styled.div`
@@ -167,12 +198,21 @@ const Prompt = styled.div`
     box-sizing: border-box;
     background-color: #b7bb8f;
     font-size: 1.5rem;
+
+    @media screen and (max-width: 500px){
+        font-size: 1rem;
+    }
 `;
 
 const Image = styled.img`
     max-height: 100%;
     max-width: 100%;
     object-fit: cover;
+
+    animation-name: ${fadeIn};
+    animation-duration: 2s;
+    animation-delay:1s;
+    animation-fill-mode: forwards;
 `;
 
 const Button = styled.button`
@@ -202,6 +242,14 @@ const RadioContainer = styled.div`
         font-weight: bold;
     }
 
+    @media screen and (max-width: 500px){
+        display: grid;
+        justify-content: center;
+        align-content: center;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 80px);
+    }
+
 `;
 
 const Label = styled.label`
@@ -215,8 +263,13 @@ const Label = styled.label`
     text-align:center;
     color: black;
 
-    &:hover {
-        background-color: #2fbb31;
+    @media screen and (max-width: 500px){
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+        width: 100%;
+        height: 100%;
     }
 `;
 

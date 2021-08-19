@@ -1,8 +1,8 @@
 import React from "react";
 import {Link} from 'react-router-dom';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 import useSingleTrip from "../hooks/useSingleTrip";
-//import ImgSrc from '../images/home-background.jpg';
+import { fadeIn, fadeHalf } from "../animations/fade"
 
 function Home({ data }){
     const randNum = Math.floor(Math.random()*data.years.length);
@@ -49,6 +49,11 @@ const TextContainer = styled.div`
     padding-left: 10em;
     box-sizing: border-box;
     background-image: linear-gradient(to right, #f5ebcf, var(--bg-color), hsla(44, 21%, 63%, 0));
+
+    @media screen and (max-width: 500px){
+        background: transparent;
+        padding: 1em;
+    }
 `;
 
 const Subtitle = styled.h2`
@@ -59,6 +64,11 @@ const Subtitle = styled.h2`
     font-style: italic;
     width: 75%;
     opacity: 0.9;
+
+    @media screen and (max-width: 500px){
+        font-size: 2.5rem;
+        text-shadow: var(--shadow);
+    }
 `;
 
 const Title = styled.h1`
@@ -69,6 +79,11 @@ const Title = styled.h1`
     margin-bottom: 2rem;
     small {
         font-size: 60%;
+    }
+
+    @media screen and (max-width: 500px){
+        font-size: 4rem;
+        text-shadow: var(--shadow);
     }
 `;
 
@@ -91,10 +106,7 @@ const StyledLink = styled(Link)`
         background-color: var(--btn-active-color);
     }
 `;
-const fadeIn = keyframes`
-    0% { opacity: 0; }
-    100% { opacity: 1; }
-`;
+
 
 const Image = styled.img`
     position: absolute;
@@ -113,6 +125,11 @@ const Image = styled.img`
     animation-duration: 2s;
     animation-delay:1s;
     animation-fill-mode: forwards;
+
+    @media screen and (max-width: 500px){
+        width: 100%;
+        animation-name: ${fadeHalf};
+    }
 `;
 
 
