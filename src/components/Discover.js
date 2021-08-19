@@ -145,7 +145,7 @@ const Container = styled.div`
     
     @media screen and (max-width: 500px){
         flex-direction: column;
-        padding: 3em 0;
+        padding: 4em 0;
     }
 
     .hide {

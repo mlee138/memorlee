@@ -5,7 +5,7 @@ function NavBar() {
     const [open, setOpen] = useState(false);
     return (
         <Nav>
-          <StyledLink to="/">memorlee</StyledLink>
+          <StyledLink onClick={()=>setOpen(false)} to="/">memorlee</StyledLink>
           <MenuBtn onClick={() => setOpen(!open)} className={open ? "open" : null}>
             <Hamburger/>
           </MenuBtn>
@@ -42,15 +42,15 @@ const MenuBtn = styled.div`
   height: 20px;
 
   &.open div {
-    transform: translateX(-20px);
+    transform: translateX(-30px);
     background: transparent;
 
     &:before {
-      transform: translate(20px, 0px) rotate(45deg);
+      transform: translate(30px, 0px) rotate(45deg);
     }
 
     &:after {
-      transform: translate(20px, 0px) rotate(-45deg);
+      transform: translate(30px, 0px) rotate(-45deg);
     }
   }
 
