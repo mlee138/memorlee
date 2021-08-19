@@ -26,7 +26,6 @@ const Container = styled.div`
     text-align: center;
     position: relative;
     font-size: 1.5em;
-
     @media screen and (max-width: 500px){
         padding: 4em 15px;
         font-size: 1em;
@@ -41,15 +40,12 @@ const Button = styled.button`
     padding: 0.5em 1em;
     font-size: 1rem;
     cursor: pointer;
-
     &:hover { 
         background: rgba(255,255,255, 0.5);
     }
-
     &:active {
         background: rgba(255,255,255, 0.75);
     }
-
 `;
 
 

@@ -82,12 +82,10 @@ const Grid = styled.div`
 
 const ButtonsContainer = styled.div`
     margin-bottom: 0.5em;
-
     & button {
         padding: 0.5em 1em;
         font-family: var(--font);
     }
-
     & .selected {
         background-color: #009688;
     }

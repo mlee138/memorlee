@@ -147,7 +147,6 @@ const Container = styled.div`
         flex-direction: column;
         padding: 4em 0;
     }
-
     .hide {
         display: none;
     }
@@ -171,7 +170,6 @@ const QuestionContainer = styled.div`
     min-height: 300px;
     margin-right: 40px;
     box-shadow: var(--shadow);
-
     @media screen and (max-width: 500px){
         width: 100%;
         max-height: 50%;
@@ -198,7 +196,6 @@ const Prompt = styled.div`
     box-sizing: border-box;
     background-color: #b7bb8f;
     font-size: 1.5rem;
-
     @media screen and (max-width: 500px){
         font-size: 1rem;
     }
@@ -208,7 +205,6 @@ const Image = styled.img`
     max-height: 100%;
     max-width: 100%;
     object-fit: cover;
-
     animation-name: ${fadeIn};
     animation-duration: 2s;
     animation-delay:1s;
@@ -222,11 +218,9 @@ const Button = styled.button`
     border: none;
     border-radius: 10px;
     font-size: 1rem;
-
     &:hover {
         background-color: hsla(0, 0%, 100%, 0.7);
     }
-
     &:active {
         background-color: hsla(0, 0%, 100%, 0.8);
     }
@@ -241,7 +235,6 @@ const RadioContainer = styled.div`
         background-color: #3a953b;
         font-weight: bold;
     }
-
     @media screen and (max-width: 500px){
         display: grid;
         justify-content: center;
@@ -249,7 +242,6 @@ const RadioContainer = styled.div`
         grid-template-columns: repeat(2, 1fr);
         grid-template-rows: repeat(2, 80px);
     }
-
 `;
 
 const Label = styled.label`
@@ -262,7 +254,6 @@ const Label = styled.label`
     width: 140px;
     text-align:center;
     color: black;
-
     @media screen and (max-width: 500px){
         display: flex;
         align-items: center;

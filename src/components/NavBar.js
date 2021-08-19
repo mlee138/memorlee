@@ -25,7 +25,6 @@ const Nav = styled.nav`
   right: 0;
   z-index: 10;
   
-
   background-color: var(--nav-color);
   display: flex;
   justify-content: space-between;
@@ -40,20 +39,16 @@ const MenuBtn = styled.div`
   padding: 10px;
   width: 20px;
   height: 20px;
-
   &.open div {
     transform: translateX(-30px);
     background: transparent;
-
     &:before {
       transform: translate(30px, 0px) rotate(45deg);
     }
-
     &:after {
       transform: translate(30px, 0px) rotate(-45deg);
     }
   }
-
   @media screen and (max-width: 500px) {
     display: flex;
   }
@@ -66,7 +61,6 @@ const Hamburger = styled.div`
   background-color: white;
   position: relative;
   transition: all .5s ease-in-out;
-
   &:before, &:after{
     content: '';
     position: absolute;
@@ -78,11 +72,9 @@ const Hamburger = styled.div`
     background-color: white;
     transition: all .5s ease-in-out;
   }
-
   &:before {
     transform: translateY(-7px);
   }
-
   &:after {
     transform: translatey(7px);
   }
@@ -92,10 +84,8 @@ const MenuOptions = styled.ul`
   margin: 0;
   padding: 0;
   display: flex;
-
   @media screen and (max-width: 500px) {
     display: flex;
-
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -103,7 +93,6 @@ const MenuOptions = styled.ul`
     top: 50px;
     left: 0;
     right: 0;
-
     &.open li{
       opacity: 1;
       transform: translateX(0px);
@@ -129,7 +118,6 @@ const StyledLink = styled(Link)`
   text-decoration: none;
   padding: 1rem;
   position: relative;
-
   @media screen and (max-width: 500px) {
     display: inline-block;
     width: 100%;
