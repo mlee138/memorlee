@@ -66,8 +66,9 @@ function useFirestore(yr, loc) {
         if(year && location) {
             singleTrip(year, location);
         } else if (year || location) {
+            console.log(year, location);
             if(year){   multipleTrips("year", year) }
-            else{       multipleTrips("location", location); } 
+            else{       multipleTrips("name", location); } 
         } else {
             setDocs([]);
         }

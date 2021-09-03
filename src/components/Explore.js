@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import Dropdown from './Dropdown.js';
 import TripCard from './TripCard.js';
@@ -16,11 +16,6 @@ const Container = styled.div`
 function Explore({ data }){
     const {years, locations} = data;
     const [ docs, newYear, newLocation ] = useFirestore();
-    
-    
-    useEffect( ()=>{
-
-    },[]);
 
     return(
         <Container>
