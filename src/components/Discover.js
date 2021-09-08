@@ -2,11 +2,12 @@ import React, {useState, useEffect, useRef} from 'react';
 import styled from 'styled-components';
 import useSingleTrip from '../hooks/useSingleTrip';
 import { fadeIn } from '../animations/fade';
+import { loadingTurn } from '../animations/loading';
 
 function Discover({ data }){
     const [years] = useState(data.years);
     const [locations] = useState(data.locations);
-    const [url, newTrip] = useSingleTrip({ year: '', location:''});
+    const [url, loading, newTrip] = useSingleTrip({ year: '', location:''});
     const [prompt, setPrompt] = useState('');
     const [choices, setChoices] = useState([]);
     const [answer, setAnswer] = useState('');
@@ -102,7 +103,13 @@ function Discover({ data }){
         <Container>
             <QuestionContainer>
                 <ImageContainer>
-                    <Image src={url} alt={`${answer} vacation`} />
+                    {
+                        loading ?
+                        <Loading></Loading>
+                        :
+                        <Image src={url} alt={`${answer} vacation`} />
+                    }
+                    
                 </ImageContainer>
                 <Prompt ref={promptRef}>
                     <p>{prompt}</p>
@@ -179,11 +186,25 @@ const QuestionContainer = styled.div`
 const ImageContainer = styled.div`
     display: flex;
     justify-content:center;
+    align-items: center;
     background-color: #1c1c1c;
     width: 100%;
     height: 85%;
     box-shadow: inset 7px 7px 10px #181818,
             inset -7px -7px 10px #202020;
+`;
+
+const Loading = styled.div`
+    height: 50px;
+    width: 50px;
+    border: 10px solid darkgrey;
+    border-right-color: grey;
+    border-radius: 50%;
+    margin: 2em;
+    animation-name: ${loadingTurn};
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
 `;
 
 const Prompt = styled.div`
@@ -207,7 +228,6 @@ const Image = styled.img`
     object-fit: cover;
     animation-name: ${fadeIn};
     animation-duration: 2s;
-    animation-delay:1s;
     animation-fill-mode: forwards;
 `;
 

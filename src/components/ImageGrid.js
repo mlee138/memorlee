@@ -5,7 +5,7 @@ import Modal from './Modal';
 import useFirestore from '../hooks/useFirestore';
 
 function ImageGrid({ year, location }) {
-    const ImagesPerPage = 10;
+    const ImagesPerPage = 20;
     const [ docs ] = useFirestore(year, location);
     const [modalImg, setModalImg] = useState('');
     const [ range, setRange ] = useState({start:0, end: ImagesPerPage});

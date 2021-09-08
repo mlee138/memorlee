@@ -4,6 +4,7 @@ import { firestore } from '../firebase/config';
 function useSingleTrip(tripData) {
     const [trip, setTrip] = useState(tripData);
     const [url, setUrl] = useState('');
+    const [loading, setLoading] = useState(false);
 
     function newTrip(newYr, newLoc) {
         if(newYr !== trip.year || newLoc !== trip.location){
@@ -13,6 +14,7 @@ function useSingleTrip(tripData) {
 
     useEffect( ()=>{
         if(trip.year && trip.location) {
+            setLoading(true);
             firestore.collection("trips")
             .where("year", "==", trip.year)
             .where("name", "==", trip.location)
@@ -24,15 +26,17 @@ function useSingleTrip(tripData) {
                 })
                 const randIndex = Math.floor(Math.random()*documents[0].images.length); 
                 setUrl(documents[0].images[randIndex]);
+                setLoading(false);
             })
             .catch((error) => {
+                setLoading(false);
                 console.log(`Error getting document: ${error}`);
             });
         } else {
             setUrl('');
         }
     }, [trip]); 
-    return [ url, newTrip];
+    return [url, loading, newTrip];
 }
 
 export default useSingleTrip;
