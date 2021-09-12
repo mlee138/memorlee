@@ -13,6 +13,7 @@ function NavBar() {
             <Option><StyledLink to="/" onClick={()=>setOpen(false)}>Home</StyledLink></Option>
             <Option><StyledLink to="/explore" onClick={()=>setOpen(false)}>Explore</StyledLink></Option>
             <Option><StyledLink to="/discover" onClick={()=>setOpen(false)} >Discover</StyledLink></Option>
+            <Option><StyledLink to="/upload" onClick={()=>setOpen(false)}>Upload</StyledLink></Option>
           </MenuOptions>
         </Nav>
     )
@@ -24,6 +25,7 @@ const Nav = styled.nav`
   left:0;
   right: 0;
   z-index: 10;
+  height: 50px;
   
   background-color: var(--nav-color);
   display: flex;
@@ -118,9 +120,6 @@ const StyledLink = styled(Link)`
   position: relative;
   @media screen and (max-width: 500px) {
     display: inline-block;
-    width: 100%;
-    height: 100%;
-    padding: 1rem 0;
   }
 `;
 

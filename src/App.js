@@ -10,6 +10,7 @@ import Explore from "./components/Explore.js";
 import Discover from "./components/Discover.js";
 import AlbumView from "./components/AlbumView.js";
 import useData from "./hooks/useData";
+import UploadForm from "./components/UploadForm.js";
 import './App.css';
 
 //import getImageList from "./helper/getImageList.js";
@@ -27,6 +28,7 @@ function App() {
             <Route path="/explore" exact component={()=> <Explore data={data}/>}/>
             <Route path="/explore/:location/:year" component={AlbumView}/>
             <Route path="/discover" component={()=> <Discover data={data}/>}/>
+            <Route path="/upload" component={()=><UploadForm data={data}/>}/>
           </Switch>
       </Main>
     </Router>
