@@ -9,6 +9,7 @@ const SelectWrap = styled.div`
     border-radius: 20px;
     padding: 0 0.9em;
     margin: 1em;
+    margin-left: 0;
     cursor: pointer;
     background-color: var(--btn-color);
     color: black;

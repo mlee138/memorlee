@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { firestore } from '../firebase/config';
 
-function useSingleTrip(tripData) {
+function useRandomImage(tripData) {
     const [trip, setTrip] = useState(tripData);
     const [url, setUrl] = useState('');
     const [loading, setLoading] = useState(false);
@@ -39,4 +39,4 @@ function useSingleTrip(tripData) {
     return [url, loading, newTrip];
 }
 
-export default useSingleTrip;
+export default useRandomImage;

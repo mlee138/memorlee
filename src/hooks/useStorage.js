@@ -1,44 +1,30 @@
 import { useState, useEffect } from "react";
-import { storage } from '../firebase/config'
+import { storage, firestore, timestamp } from '../firebase/config'
 // TO BE UPDATED: only gets rand img from cruise 2002
 // CURRENTLY: used to test google storage
-const useStorage = (doc, random=0) => {
-    const [urls, setUrls] = useState();
-    const [data, setData] = useState(doc);
+const useStorage = (files, year, location) => {
+    const [progress, setProgress] = useState(0);
+    const [error, setError] = useState(null);
+    const [url, setUrl] = useState(null);
 
-    // function newTrip(newTrip){
-    //     setTrip(newTrip);
-    // }
+    useEffect(()=>{
+        const storageRef = storage.ref(files[0].name);
+        const collectionRef = firestore.collection('images');
 
-    useEffect(() => {
-        /*async function getRandTrip() {
-            const { images } = doc[0];
-            //ADD CODE FOR RANDOM
-            const imageUrls = images.map(image => {
-                return storage.refFromURL(image).getDownloadURL();
-            })
-            console.log(imageUrls);
-            //setUrl(url);
-        }*/
+        storageRef.put(files[0]).on('state_changed', (snap) => {
+            let percentage = (snap.bytesTransferred / snap.totalBytes) * 100;
+            setProgress(percentage);
+        }, (err) => {
+            setError(err);
+        }, async () => {
+            const url = await storageRef.getDownloadURL();
+            const createdAt = timestamp();
+            collectionRef.add({ url, createdAt });
+            setUrl(url);
+        })
+    }, [files]);
 
-        if(data){
-            console.log(data);
-            //getRandTrip()
-            const { images } = data;
-            //ADD CODE FOR RANDOM
-            const imageUrls = images.map(image => {
-                const downloadURL = storage.refFromURL(image).getDownloadURL();
-                return downloadURL;
-            })
-            console.log(imageUrls);
-            setUrls(imageUrls);
-        } else {
-            console.log("no trips here!");
-        }
-        
-    }, [data]);
-
-    return [ urls, setData ];
+    return { progress, url, error}
 }
 
 export default useStorage;

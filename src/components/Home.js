@@ -1,7 +1,7 @@
 import React from "react";
 import {Link} from 'react-router-dom';
 import styled from 'styled-components';
-import useSingleTrip from "../hooks/useSingleTrip";
+import useRandomImage from "../hooks/useRandomImage";
 import { fadeIn, fadeHalf } from "../animations/fade"
 
 function Home({ data }){
@@ -11,7 +11,7 @@ function Home({ data }){
                         location: data.locations[randNum]
                      };
 
-    const [ url ] = useSingleTrip(randData);
+    const [ url ] = useRandomImage(randData);
 // {
 //     url && <Image src={url} alt="random vacation"/>
 // }

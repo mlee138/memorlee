@@ -1,13 +1,13 @@
 import React, {useState, useEffect, useRef} from 'react';
 import styled from 'styled-components';
-import useSingleTrip from '../hooks/useSingleTrip';
+import useRandomImage from '../hooks/useRandomImage';
 import { fadeIn } from '../animations/fade';
 import { loadingTurn } from '../animations/loading';
 
 function Discover({ data }){
     const [years] = useState(data.years);
     const [locations] = useState(data.locations);
-    const [url, loading, newTrip] = useSingleTrip({ year: '', location:''});
+    const [url, loading, newTrip] = useRandomImage({ year: '', location:''});
     const [prompt, setPrompt] = useState('');
     const [choices, setChoices] = useState([]);
     const [answer, setAnswer] = useState('');
