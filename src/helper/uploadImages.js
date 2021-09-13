@@ -1,5 +1,5 @@
 import { storage, firestore, timestamp } from '../firebase/config'
-import camelize from '../firebase/camelize';
+import camelize from './camelize';
 
 const uploadImages = async(files, year, location) => {
     let tripName = `${year}_${camelize(location)}`;
