@@ -47,10 +47,6 @@ const Card = styled.div`
     }
 `;
 
-const CardText = styled.div`
-    position: relative;
-`;
-
 const Location = styled.h1`
     font-size: 1.5rem;
 

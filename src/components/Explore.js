@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Dropdown from './Dropdown.js';
 import TripCard from './TripCard.js';
-import useFirestore from '../hooks/useFirestore.js';
 
 const Container = styled.div`
     padding: 5em 20%;
