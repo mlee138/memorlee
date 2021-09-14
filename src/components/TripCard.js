@@ -4,15 +4,12 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { fadeIn } from '../animations/fade';
 
-function TripCard({location, year, cover}){
+function TripCard({location, year}){
      return (
         <StyledLink to={`/explore/${location}/${year}`}>
-            <Card className="trip-card">
-                <CardText>
-                    <h1>{location}</h1>
-                    <h2>{year}</h2>
-                </CardText>
-                <Image src={cover} alt="random vacation"/>
+            <Card>
+                <Location>{location}</Location>
+                <Year>{year}</Year>
             </Card>
         </StyledLink>
      )
@@ -31,12 +28,13 @@ const StyledLink = styled(Link)`
 
 const Card = styled.div`
     display: flex;
-    height: 150px;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 200px;
+    padding: 1rem;
     border-radius: 5px;
     box-sizing: border-box;
     box-shadow: var(--shadow);
-    margin: 2em 0em;
-    padding-left: 1em;
     background-color: #b7bb8f; 
 
     opacity: 0;
@@ -45,24 +43,24 @@ const Card = styled.div`
     animation-fill-mode: forwards;
 
     @media screen and (max-width: 500px){
-        justify-content: space-between;
-        margin: 1em;
+        height: 150px;
     }
 `;
 
 const CardText = styled.div`
-    width: 30%;
-    & h1 { font-size: 1.5rem; }
-    & h2 { font-size: 1rem; }
-
-    @media screen and (max-width: 500px){
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        width: auto;
-    }
+    position: relative;
 `;
 
+const Location = styled.h1`
+    font-size: 1.5rem;
+
+`;
+
+const Year = styled.h2`
+    font-size: 1rem;
+`;
+
+/*
 const Image = styled.img`
     flex-grow: 1;
     max-width: 100%;
@@ -73,5 +71,6 @@ const Image = styled.img`
         flex-grow: 0;
     }
 `;
+*/
 
 export default TripCard;

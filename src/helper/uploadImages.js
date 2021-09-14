@@ -1,10 +1,11 @@
 import { storage, firestore, timestamp } from '../firebase/config'
-import camelize from './camelize';
+import { formatTripName, toTitleCase } from './format';
 
-const uploadImages = async(files, year, location) => {
-    let tripName = `${year}_${camelize(location)}`;
+const uploadImages = async(files, year, loc) => {
+    const location = toTitleCase(loc);
+    let tripName = formatTripName(year, location);
     
-    //add the trip to the trip collection
+    //add the trip to the trips collection
     const tripsRef = firestore.collection('trips').doc(tripName);
     const res = tripsRef.set({
         year: year,
@@ -12,6 +13,7 @@ const uploadImages = async(files, year, location) => {
     }, { merge: true });
     console.log(await res);
 
+    //add the image links to a collection
     const collectionRef = firestore.collection(tripName);
     let p = new Promise((resolve, reject) => {
         let successes = 0;

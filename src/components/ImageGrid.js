@@ -6,7 +6,7 @@ import useFirestore from '../hooks/useFirestore';
 
 function ImageGrid({ year, location }) {
     const ImagesPerPage = 20;
-    const [ docs ] = useFirestore(year, location);
+    const [ urls ] = useFirestore(year, location);
     const [modalImg, setModalImg] = useState('');
     const [ range, setRange ] = useState({start:0, end: ImagesPerPage});
     const [ numButtons, setNumButtons ] = useState(0);
@@ -28,11 +28,12 @@ function ImageGrid({ year, location }) {
     }
 
     useEffect(() => {
-        if(Object.entries(docs).length !== 0){
-            const maxBtns = Math.ceil(docs[0].images.length / ImagesPerPage);
+        if(Object.entries(urls).length !== 0){
+            console.log(urls);
+            const maxBtns = Math.ceil(urls.length / ImagesPerPage);
             if(maxBtns !== numButtons){ setNumButtons(maxBtns); }
         }
-    }, [docs,range, numButtons])
+    }, [urls,range, numButtons])
 
     return (
         <div>
@@ -44,7 +45,7 @@ function ImageGrid({ year, location }) {
             </ButtonsContainer>
             <Grid>
                 { 
-                    docs.length !== 0 && docs[0].images.slice(range.start, range.end).map((url, i) => {
+                    urls.length !== 0 && urls.slice(range.start, range.end).map((url, i) => {
                         return (
                             <ImageContainer key={i} >
                                 <Image 
@@ -75,7 +76,7 @@ const Grid = styled.div`
     grid-gap: 2em;
     @media screen and (max-width: 500px){
         grid-gap: 0.5em;
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
         grid-template-rows: repeat(auto-fill, minmax(100px, 1fr));
     }
 `;

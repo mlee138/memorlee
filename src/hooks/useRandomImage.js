@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { firestore } from '../firebase/config';
+import { formatTripName } from '../helper/format';
 
 function useRandomImage(tripData) {
     const [trip, setTrip] = useState(tripData);
@@ -15,17 +16,15 @@ function useRandomImage(tripData) {
     useEffect( ()=>{
         if(trip.year && trip.location) {
             setLoading(true);
-            firestore.collection("trips")
-            .where("year", "==", trip.year)
-            .where("name", "==", trip.location)
+            firestore.collection(formatTripName(trip.year, trip.location))
             .get()
             .then(snap => {
-                let documents = [];
+                let urls = [];
                 snap.forEach(item => {
-                    documents.push({...item.data()})
+                    urls.push(item.data().url)
                 })
-                const randIndex = Math.floor(Math.random()*documents[0].images.length); 
-                setUrl(documents[0].images[randIndex]);
+                const randIndex = Math.floor(Math.random()*urls.length); 
+                setUrl(urls[randIndex]);
                 setLoading(false);
             })
             .catch((error) => {

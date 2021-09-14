@@ -62,7 +62,7 @@ function UploadForm({data}){
                     type="text" 
                     onChange={(e)=>setLocation(e.target.value)}
                     value={location}
-                    />
+                    disabled={uploading ? true : false}/>
             </Section>
             <Section>
                 <H2>Enter the Year</H2>
@@ -70,7 +70,7 @@ function UploadForm({data}){
                     type="number" 
                     onChange={(e)=>setYear(e.target.value)}
                     value={year}
-                    />
+                    disabled={uploading ? true : false}/>
             </Section>
             <Submit 
                 className={uploading ? 'uploading' : null}
@@ -95,14 +95,14 @@ const Form = styled.form`
     padding: 5em 20%;
 
     & .uploading {
-        background: linear-gradient(90deg, #dde7e9, skyBlue, #dde7e9, skyBlue, #dde7e9, #3ae9b7);
+        background: linear-gradient(90deg, #dde7e9, #4ba3de, #dde7e9, #4ba3de, #dde7e9, #4ba3de);
         background-size: 500% 500%;
         animation: ${uploadingAnimation} 1s linear infinite;
     }
 `;
 
 const Section = styled.section`
-    background-color: white;
+    background-color: hsla(0, 0%, 100%, 0.75);
     padding: 2rem 1rem;
     margin: 1rem 0rem;
     border-radius: 10px;
@@ -130,7 +130,7 @@ const TextInput = styled.input`
 const Submit = styled.input`
     padding: 1rem 2rem;
     font-family: var(--font);
-    background-color: skyBlue;
+    background-color: #4ba3de;
 `;
 
 

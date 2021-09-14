@@ -13,7 +13,7 @@ const useData = () => {
                 let tempLocations = [];
                 snap.forEach(doc => {
                     tempYears.push(doc.data().year);
-                    tempLocations.push(doc.data().name);
+                    tempLocations.push(doc.data().location);
                 });
                 setYears(tempYears);
                 setLocations(tempLocations);

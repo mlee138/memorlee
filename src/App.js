@@ -17,7 +17,6 @@ import './App.css';
 
 function App() {
   const data = useData();
-  
 
   return (
     <Router>

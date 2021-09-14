@@ -5,8 +5,7 @@ import { fadeIn } from '../animations/fade';
 import { loadingTurn } from '../animations/loading';
 
 function Discover({ data }){
-    const [years] = useState(data.years);
-    const [locations] = useState(data.locations);
+    const {years, locations} = data;
     const [url, loading, newTrip] = useRandomImage({ year: '', location:''});
     const [prompt, setPrompt] = useState('');
     const [choices, setChoices] = useState([]);
@@ -16,7 +15,7 @@ function Discover({ data }){
     const promptRef = useRef(null);
 
     useEffect(()=>{
-        if(years.length && locations.length){
+        if(years && locations){
             newQuestion();
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -33,7 +32,7 @@ function Discover({ data }){
 
     const newQuestion = () => {
         resetButtons();
-        //remove duplicates from years and locations
+        //remove duplicates from years and locations for later use
         const yearSet = [...new Set(years)];
         const locationSet = [...new Set(locations)];
         //get a random trip
@@ -42,7 +41,7 @@ function Discover({ data }){
         const randLocation = locations[randIndex];
         
         newTrip(randYear, randLocation);
-
+        
         let arr, correctValue, q;
         //choose a year or location question
         if (Math.floor(Math.random()*2) === 0){
@@ -55,6 +54,7 @@ function Discover({ data }){
             q = 'Where was this photo taken?';
             
         }
+        
         //retrieve random question choices
         let indexSet = new Set();
         while (indexSet.size < 3) {
@@ -63,6 +63,7 @@ function Discover({ data }){
                 indexSet.add(rand);    
             }
         }
+        
         //randomly insert correct answer into choices
         let newChoices =  [...indexSet];
         newChoices.splice(
