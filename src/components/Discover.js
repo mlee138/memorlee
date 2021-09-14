@@ -125,6 +125,11 @@ function Discover({ data }){
                 {   (choices.length !== 0) &&
                     choices.map((choice, i) => {
                         return  <div key={i}>
+                                    <Label 
+                                        htmlFor={choice} 
+                                        onClick={(e) => radioPressed(e)}>
+                                            {choice}
+                                    </Label>
                                     <Radio 
                                         type="radio"
                                         id={choice} 
@@ -132,11 +137,6 @@ function Discover({ data }){
                                         name="choices"
                                         disabled={userChoice ? true : false}
                                         onChange={(e) => checkAnswer(e)}/>
-                                    <Label 
-                                        htmlFor={choice} 
-                                        onClick={(e) => radioPressed(e)}>
-                                            {choice}
-                                    </Label>
                                 </div>
                     })
                 }
@@ -153,8 +153,10 @@ const Container = styled.div`
     
     @media screen and (max-width: 500px){
         flex-direction: column;
+        justify-content: space-between;
         padding: 4em 0;
     }
+    
     .hide {
         display: none;
     }
@@ -268,13 +270,22 @@ const RadioContainer = styled.div`
 const Label = styled.label`
     display: block;
     box-shadow: 2px 2px 4px #828282;
-    background-color: #dee0cc;
+    background-color: hsl(66, 24%, 84%);
     border-radius: 5px;
     padding: 0.5em 1em;
     box-sizing: border-box;
     width: 140px;
     text-align:center;
     color: black;
+
+    &:hover {
+        background-color: hsl(66, 24%, 75%);
+    }
+
+    &:active {
+        background-color: hsl(66, 40%, 70%);
+    }
+
     @media screen and (max-width: 500px){
         display: flex;
         align-items: center;

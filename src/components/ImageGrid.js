@@ -94,8 +94,12 @@ const ButtonsContainer = styled.div`
 
 const ImageContainer = styled.div`
     width: 100%;
-    height: 100%;
+    min-height: 150px;
     background-color: black;
+
+    @media screen and (max-width: 500px){
+        min-height: 80px;
+    }
 `;
 
 const Image = styled.img`

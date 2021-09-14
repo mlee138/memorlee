@@ -20,10 +20,63 @@ TripCard.propTypes = {
     year: PropTypes.string,
 };
 
+const newShadow =(numSteps, color)=>{
+    const spread = 1;
+    let gradient = `1px 1px ${spread}px ${color}`;
+
+    for(let i=2; i<numSteps; i++) {
+        gradient = `${gradient}, ${i}px ${i}px ${spread}px ${color}`;
+    }
+    return gradient;
+}
+const bg_light = 55;
+const shadow_light = 45;
+const diff = 5;
 
 const StyledLink = styled(Link)`
     color: var(--font-color);
     text-decoration: none;
+
+    &:nth-child(5n+1){
+        background-image: linear-gradient(to bottom right, hsla(335, 55%, ${bg_light+diff}%, 1), hsla(335, 55%, ${bg_light-diff}%, 1));
+
+        & h1{   
+            text-shadow: ${newShadow(170, `hsla(335, 55%, ${shadow_light}%, 1)`)};
+        }
+    }
+
+    &:nth-child(5n+2){
+        background-image: linear-gradient(to bottom right, hsla(95, 55%, ${bg_light+diff}%, 1), hsla(95, 55%, ${bg_light-diff}%, 1));
+
+        & h1{   
+            text-shadow: ${newShadow(170, `hsla(95, 55%, ${shadow_light}%, 1)`)};
+        }
+    }
+
+    &:nth-child(5n+3){
+        background-image: linear-gradient(to bottom right, hsla(35, 60%, ${bg_light}%, 1), hsla(35, 60%, ${bg_light-10}%, 1)); 
+
+        & h1{   
+            text-shadow: ${newShadow(170, `hsla(35, 60%, ${shadow_light}%, 1)`)};
+        }
+        
+    }
+
+    &:nth-child(5n+4){
+        background-image: linear-gradient(to bottom right, hsla(155, 55%, ${bg_light+diff}%, 1), hsla(155, 55%, ${bg_light-diff}%, 1));
+
+        & h1{   
+            text-shadow: ${newShadow(170, `hsla(155, 55%, ${shadow_light}%, 1)`)};
+        }
+    }
+
+    &:nth-child(5n+5){
+        background-image: linear-gradient(to bottom right, hsla(245, 55%, ${bg_light+diff}%, 1), hsla(245, 55%, ${bg_light-diff}%, 1));
+
+        & h1{   
+            text-shadow: ${newShadow(170, `hsla(245, 55%, ${shadow_light}%, 1)`)};
+        }
+    }
 `;
 
 const Card = styled.div`
@@ -35,7 +88,8 @@ const Card = styled.div`
     border-radius: 5px;
     box-sizing: border-box;
     box-shadow: var(--shadow);
-    background-color: #b7bb8f; 
+    position: relative;
+    overflow: hidden;
 
     opacity: 0;
     animation-name: ${fadeIn};
@@ -48,12 +102,20 @@ const Card = styled.div`
 `;
 
 const Location = styled.h1`
-    font-size: 1.5rem;
-
+    margin: 0;
+    width: 100%;
+    font-size: 2.25rem;
+    font-weight: 900;
+    color: hsla(0,0%,100%, 1);
 `;
 
 const Year = styled.h2`
-    font-size: 1rem;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 0;
+    font-size: 3rem;   
+    color: hsla(0,0%, 100%, 0.6);
 `;
 
 /*

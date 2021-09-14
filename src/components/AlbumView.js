@@ -30,6 +30,16 @@ const Container = styled.div`
         padding: 4em 15px;
         font-size: 1em;
     }
+
+    & h1 {
+        margin-bottom: 0;
+    }
+
+    & h2 {
+        margin-top: 0;
+        font-style: italic;
+        opacity: 0.75;
+    }
 `
 
 const Button = styled.button`

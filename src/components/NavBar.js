@@ -116,11 +116,23 @@ const Option = styled.li`
 const StyledLink = styled(Link)`
   color: white;
   text-decoration: none;
-  padding: 1rem;
+  padding: 0.75rem;
+  margin: 0 0.25rem;
   position: relative;
 
-  &:hover {
-    text-decoration: underline;
+  &::before{
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background-color: white;
+    transition: width 0.25s;
+  }
+
+  &:hover::before {
+    width: 100%;
   }
 
   @media screen and (max-width: 500px) {

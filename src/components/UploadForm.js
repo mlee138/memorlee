@@ -56,6 +56,8 @@ function UploadForm({data}){
             <Subtext>{error}</Subtext>
             <Section>
                 <H2>Enter the Trip Location</H2>
+                <Number>1</Number>
+                
                 <Subtext>Choose from existing locations or type in a new one</Subtext>
                 <Dropdown name="location" options={locations} set={setLocation}/>
                 <Separator>or</Separator>
@@ -67,6 +69,8 @@ function UploadForm({data}){
             </Section>
             <Section>
                 <H2>Enter the Year</H2>
+                <Number>2</Number>
+                
                 <TextInput 
                     type="number" 
                     onChange={(e)=>setYear(e.target.value)}
@@ -100,13 +104,29 @@ const Form = styled.form`
         background-size: 500% 500%;
         animation: ${uploadingAnimation} 1s linear infinite;
     }
+
+    @media screen and (max-width: 500px){
+        padding: 5em 1rem;
+    }
 `;
 
 const Section = styled.section`
+    position: relative;
     background-color: hsla(0, 0%, 100%, 0.75);
     padding: 2rem 1rem;
     margin: 1rem 0rem;
     border-radius: 10px;
+    overflow: hidden;
+`;
+
+const Number = styled.div`
+    position: absolute;
+    top: -1rem;
+    right: 0;
+    font-size: 7em;
+    font-family: arial;
+    font-weight: bold;
+    color: hsla(42, 60%, 91%, 0.5);
 `;
 
 const H2 = styled.h2`
@@ -122,6 +142,13 @@ const Subtext = styled.small`
 
 const Separator = styled.span`
     margin-right: 1rem;
+
+    @media screen and (max-width: 500px){
+        display: block;
+        margin-bottom: 1rem;
+
+        
+    }
 `;
 
 const TextInput = styled.input`
