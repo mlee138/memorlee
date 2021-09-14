@@ -23,6 +23,7 @@ function UploadForm({data}){
                 return false;
             }
         }
+        console.log(selected);
         setFiles(selected);
         setError(null);
     }
