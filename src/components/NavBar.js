@@ -118,6 +118,11 @@ const StyledLink = styled(Link)`
   text-decoration: none;
   padding: 1rem;
   position: relative;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
   @media screen and (max-width: 500px) {
     display: inline-block;
   }
