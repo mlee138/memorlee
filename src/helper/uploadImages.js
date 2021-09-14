@@ -17,7 +17,7 @@ const uploadImages = async(files, year, loc) => {
     let p = new Promise((resolve, reject) => {
         //let successes = 0;
         for(let i=0; i<files.length; i++){
-            let storageRef = storage.ref(`${tripName}/files[i].name`);
+            let storageRef = storage.ref(`${tripName}/${files[i].name}`);
             storageRef.put(files[i]).on('state_changed', 
                 (snap) => {
                     let percentage = (snap.bytesTransferred / snap.totalBytes) * 100;
