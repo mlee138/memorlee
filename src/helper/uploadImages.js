@@ -7,7 +7,7 @@ const uploadImages = async(files, year, loc) => {
     
     //add the trip to the trips collection
     const tripsRef = firestore.collection('trips').doc(tripName);
-    const res = tripsRef.set({
+    tripsRef.set({
         year: year,
         location: location
     }, { merge: true });
