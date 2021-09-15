@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import styled, {keyframes} from 'styled-components';
 import Dropdown from './Dropdown';
-import uploadImages from '../helper/uploadImages';
+import uploadImage from '../helper/uploadImage';
 
 function UploadForm({data}){
     const { locations } = data;
@@ -33,14 +33,18 @@ function UploadForm({data}){
         console.log("submitting");
         setMessage('');
         setUploading(true);
+        
         try{
-            let res = await uploadImages(files, year, location);
-            console.log(res);
+            for(let i=0; i<files.length; i++){
+                let res = await uploadImage(files[i], year, location);
+                console.log(res);
+                setMessage((prev) => `${prev}\n${res}`);
+            }
             setYear('');
             setError('');
             setLocation('');
             setFiles(null);
-            setMessage('Successfully uploaded!');
+            setMessage('All Images Successfully uploaded!');
             setUploading(false);
         } catch (err) {
             setMessage(`Error uploading files - ${err}`);

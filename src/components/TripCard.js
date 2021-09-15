@@ -29,6 +29,8 @@ const newShadow =(numSteps, color)=>{
     }
     return gradient;
 }
+
+const saturation = 35;
 const bg_light = 55;
 const shadow_light = 45;
 const diff = 5;
@@ -44,43 +46,43 @@ const StyledLink = styled(Link)`
     animation-fill-mode: forwards;
 
     &:nth-child(5n+1){
-        background-image: linear-gradient(to bottom right, hsla(335, 55%, ${bg_light+diff}%, 1), hsla(335, 55%, ${bg_light-diff}%, 1));
+        background-image: linear-gradient(to bottom right, hsla(335, ${saturation}%, ${bg_light+diff}%, 1), hsla(335, ${saturation}%, ${bg_light-diff}%, 1));
         animation-delay: ${Math.random()*max_delay}s;
         & h1{   
-            text-shadow: ${newShadow(170, `hsla(335, 55%, ${shadow_light}%, 1)`)};
+            text-shadow: ${newShadow(170, `hsla(335, ${saturation}%, ${shadow_light}%, 1)`)};
         }
     }
 
     &:nth-child(5n+2){
-        background-image: linear-gradient(to bottom right, hsla(95, 55%, ${bg_light+diff}%, 1), hsla(95, 55%, ${bg_light-diff}%, 1));
+        background-image: linear-gradient(to bottom right, hsla(95, ${saturation}%, ${bg_light+diff}%, 1), hsla(95, ${saturation}%, ${bg_light-diff}%, 1));
         animation-delay: ${Math.random()*max_delay}s;
         & h1{   
-            text-shadow: ${newShadow(170, `hsla(95, 55%, ${shadow_light}%, 1)`)};
+            text-shadow: ${newShadow(170, `hsla(95, ${saturation}%, ${shadow_light}%, 1)`)};
         }
     }
 
     &:nth-child(5n+3){
-        background-image: linear-gradient(to bottom right, hsla(35, 60%, ${bg_light}%, 1), hsla(35, 60%, ${bg_light-10}%, 1)); 
+        background-image: linear-gradient(to bottom right, hsla(35, ${saturation}%, ${bg_light}%, 1), hsla(35, ${saturation}%, ${bg_light-10}%, 1)); 
         animation-delay: ${Math.random()*max_delay}s;
         & h1{   
-            text-shadow: ${newShadow(170, `hsla(35, 60%, ${shadow_light}%, 1)`)};
+            text-shadow: ${newShadow(170, `hsla(35, ${saturation}%, ${shadow_light}%, 1)`)};
         }
         
     }
 
     &:nth-child(5n+4){
-        background-image: linear-gradient(to bottom right, hsla(155, 55%, ${bg_light+diff}%, 1), hsla(155, 55%, ${bg_light-diff}%, 1));
+        background-image: linear-gradient(to bottom right, hsla(155, ${saturation}%, ${bg_light+diff}%, 1), hsla(155, ${saturation}%, ${bg_light-diff}%, 1));
         animation-delay: ${Math.random()*max_delay}s;
         & h1{   
-            text-shadow: ${newShadow(170, `hsla(155, 55%, ${shadow_light}%, 1)`)};
+            text-shadow: ${newShadow(170, `hsla(155, ${saturation}%, ${shadow_light}%, 1)`)};
         }
     }
 
     &:nth-child(5n+5){
-        background-image: linear-gradient(to bottom right, hsla(245, 55%, ${bg_light+diff}%, 1), hsla(245, 55%, ${bg_light-diff}%, 1));
+        background-image: linear-gradient(to bottom right, hsla(245, ${saturation}%, ${bg_light+diff}%, 1), hsla(245, ${saturation}%, ${bg_light-diff}%, 1));
         animation-delay: ${Math.random()*max_delay}s;
         & h1{   
-            text-shadow: ${newShadow(170, `hsla(245, 55%, ${shadow_light}%, 1)`)};
+            text-shadow: ${newShadow(170, `hsla(245, ${saturation}%, ${shadow_light}%, 1)`)};
         }
     }
 `;
