@@ -1,6 +1,7 @@
 import firebase from "firebase/app";
 import "firebase/firestore";
-import "firebase/storage"
+import "firebase/storage";
+import 'firebase/auth';
 
 var firebaseConfig = {
     apiKey: "AIzaSyAJ6wksVINM_Y6RQZXqOnRZ6SeQ0xBTksY",
@@ -16,6 +17,15 @@ var firebaseConfig = {
   
   const firestore = firebase.firestore();
   const storage = firebase.storage();
+  const auth = firebase.auth();
   const timestamp = firebase.firestore.FieldValue.serverTimestamp;
+
+  auth.signInAnonymously()
+    .then(()=>{
+      console.log("signed in");
+    })
+    .catch((error) => {
+      console.log(error.message);
+    })
 
   export { firestore, storage, timestamp };
