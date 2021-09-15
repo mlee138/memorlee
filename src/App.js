@@ -3,6 +3,8 @@ import {
   Route, 
   Switch,
 } from "react-router-dom";
+import { auth } from "./firebase/config.js";
+
 import styled from "styled-components";
 import NavBar from './components/NavBar.js';
 import Home from "./components/Home.js";
@@ -16,8 +18,14 @@ import './App.css';
 //import getImageList from "./helper/getImageList.js";
 
 function App() {
+  auth.signInAnonymously()
+    .then(()=>{
+      console.log("signed in");
+    })
+    .catch((error) => {
+      console.log(error.message);
+    })
   const data = useData();
-
   return (
     <Router>
       <Main>

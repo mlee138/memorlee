@@ -20,12 +20,4 @@ var firebaseConfig = {
   const auth = firebase.auth();
   const timestamp = firebase.firestore.FieldValue.serverTimestamp;
 
-  auth.signInAnonymously()
-    .then(()=>{
-      console.log("signed in");
-    })
-    .catch((error) => {
-      console.log(error.message);
-    })
-
-  export { firestore, storage, timestamp };
+  export { firestore, storage, auth, timestamp };
