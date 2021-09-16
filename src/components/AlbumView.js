@@ -6,7 +6,6 @@ function AlbumView({ match, history }) {
     const {location, year} = match.params;
 
     const handleBack = () => {
-        console.log("back btn clicked")
         history.goBack();
     }
 
