@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { 
   BrowserRouter as Router, 
   Route, 
@@ -15,28 +16,40 @@ import useData from "./hooks/useData";
 import UploadForm from "./components/UploadForm.js";
 import './App.css';
 
-//import getImageList from "./helper/getImageList.js";
-
 function App() {
-  auth.signInAnonymously()
-    .then(()=>{
-      console.log("signed in");
-    })
-    .catch((error) => {
-      console.log(error.message);
-    })
-  const data = useData();
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [data, setReady] = useData();
+
+  useEffect(()=> {
+    auth.signInAnonymously()
+      .then(()=>{
+        console.log("signed in");
+        setLoggedIn(true);
+        setReady(true);
+      })
+      .catch((error) => {
+        console.log(error.message);
+      })
+  },[setReady])
+  
+  
   return (
     <Router>
       <Main>
           <NavBar/>
-          <Switch>
-            <Route path="/" exact component={()=> <Home data={data}/>}/>
-            <Route path="/explore" exact component={()=> <Explore data={data}/>}/>
-            <Route path="/explore/:location/:year" component={AlbumView}/>
-            <Route path="/discover" component={()=> <Discover data={data}/>}/>
-            <Route path="/upload" component={()=><UploadForm data={data}/>}/>
-          </Switch>
+          {
+            loggedIn ? 
+            <Switch>
+              <Route path="/" exact component={()=> <Home data={data}/>}/>
+              <Route path="/explore" exact component={()=> <Explore data={data}/>}/>
+              <Route path="/explore/:location/:year" component={AlbumView}/>
+              <Route path="/discover" component={()=> <Discover data={data}/>}/>
+              <Route path="/upload" component={()=><UploadForm data={data}/>}/>
+            </Switch>
+            :
+            null
+          }
+          
       </Main>
     </Router>
   );
