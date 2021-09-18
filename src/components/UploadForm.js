@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import styled, {keyframes} from 'styled-components';
+import CryptoJS from 'crypto-js';
 import Dropdown from './Dropdown';
 import uploadImage from '../helper/uploadImage';
 
@@ -11,6 +12,7 @@ function UploadForm({data}){
     const [error, setError] = useState('');
     const [uploading, setUploading] = useState(false);
     const [message, setMessage] = useState('');
+    const [key, setKey] = useState('');
 
     const types = ['image/png', 'image/jpeg', 'image/webp']
 
@@ -23,32 +25,52 @@ function UploadForm({data}){
                 return false;
             }
         }
-        console.log(selected);
         setFiles(selected);
         setError(null);
     }
 
+    const checkPassword =()=>{
+        const cipher = 'U2FsdGVkX18Sx0SN5+2cc42JZSv/9sLCk2tx2dh1B4E='; 
+        try{
+            let decipher = CryptoJS.AES.decrypt(cipher, key);
+            decipher = decipher.toString(CryptoJS.enc.Utf8);
+            if(decipher === "UPLOAD_UNLOCKED"){
+                return true;
+            } else {
+                setMessage('password incorrect');
+                return false;
+            }
+        } catch(error) {
+            console.log(error);
+            setMessage('password incorrect');
+            return false;
+        }
+        
+    }
+
     const handleSubmit =async(e)=> {
         e.preventDefault();
-        console.log("submitting");
-        setMessage('');
-        setUploading(true);
-        
-        try{
-            for(let i=0; i<files.length; i++){
-                let res = await uploadImage(files[i], year, location);
-                console.log(res);
-                setMessage((prev) => `${prev}\n${res}`);
+        if(checkPassword()){
+            console.log("submitting");
+            setMessage('');
+            setUploading(true);
+            
+            try{
+                for(let i=0; i<files.length; i++){
+                    let res = await uploadImage(files[i], year, location);
+                    console.log(res);
+                    setMessage((prev) => `${prev}\n${res}`);
+                }
+                setYear('');
+                setError('');
+                setLocation('');
+                setFiles(null);
+                setMessage('All Images Successfully uploaded!');
+                setUploading(false);
+            } catch (err) {
+                setMessage(`Error uploading files - ${err}`);
+                setUploading(false);
             }
-            setYear('');
-            setError('');
-            setLocation('');
-            setFiles(null);
-            setMessage('All Images Successfully uploaded!');
-            setUploading(false);
-        } catch (err) {
-            setMessage(`Error uploading files - ${err}`);
-            setUploading(false);
         }
     }
 
@@ -59,28 +81,38 @@ function UploadForm({data}){
             <input type="file" multiple onChange={handleFiles}/>
             <Subtext>{error}</Subtext>
             <Section>
-                <H2>Enter the Trip Location</H2>
                 <Number>1</Number>
+                <H2>Enter the Trip Location</H2>
                 
                 <Subtext>Choose from existing locations or type in a new one</Subtext>
                 <Dropdown name="location" options={locations} set={setLocation}/>
                 <Separator>or</Separator>
-                <TextInput 
+                <Input 
                     type="text" 
                     onChange={(e)=>setLocation(e.target.value)}
                     value={location}
                     disabled={uploading ? true : false}/>
             </Section>
             <Section>
-                <H2>Enter the Year</H2>
                 <Number>2</Number>
+                <H2>Enter the Year</H2>
                 
-                <TextInput 
+                <Input 
                     type="number" 
                     onChange={(e)=>setYear(e.target.value)}
                     value={year}
                     disabled={uploading ? true : false}/>
             </Section>
+            <Section>
+            <Number>3</Number>
+                <H2>Upload Password</H2>
+                <Subtext>You must enter the secret password to upload files</Subtext>
+                <Input 
+                    type="password"
+                    onChange={(e)=>setKey(e.target.value)}
+                    value={key}/>
+            </Section>
+            
             <Submit 
                 className={uploading ? 'uploading' : null}
                 type="submit" 
@@ -89,6 +121,7 @@ function UploadForm({data}){
                           !files || 
                           !year ||
                           !location ||
+                          !key ||
                           uploading ? true : false}/>
             <Subtext>{message}</Subtext>
         </Form>
@@ -155,11 +188,12 @@ const Separator = styled.span`
     }
 `;
 
-const TextInput = styled.input`
+const Input = styled.input`
     padding: 0.5rem 0.75rem; 
 `;
 
 const Submit = styled.input`
+    display: block;
     padding: 1rem 2rem;
     font-family: var(--font);
     background-color: #4ba3de;
