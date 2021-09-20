@@ -4,10 +4,12 @@ import CryptoJS from 'crypto-js';
 import Dropdown from './Dropdown';
 import uploadImage from '../helper/uploadImage';
 
+
 function UploadForm({data}){
+    const currYear = String(new Date().getFullYear());
     const { locations } = data;
     const [location, setLocation] = useState('');
-    const [year, setYear] = useState('');
+    const [year, setYear] = useState(currYear);
     const [files, setFiles] = useState(null);
     const [error, setError] = useState('');
     const [uploading, setUploading] = useState(false);
@@ -95,7 +97,7 @@ function UploadForm({data}){
             </Section>
             <Section>
                 <Number>2</Number>
-                <H2>Enter the Year</H2>
+                <H2>Enter the Trip Year</H2>
                 
                 <Input 
                     type="number" 
