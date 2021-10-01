@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import styled from 'styled-components';
 import Dropdown from './Dropdown.js';
 import TripCard from './TripCard.js';
@@ -26,25 +26,23 @@ function Explore({ data }){
     const [location, setLocation] = useState('');
     const [trips, setTrips] = useState([]);
 
-   
+    const filterTrips = useMemo(()=> {
+        let newTrips = [];
+        for(let i=0; i<years.length; i++){
+            if( 
+                (years[i] === year || year === '') && 
+                (locations[i] === location || location === '') 
+            ){
+                newTrips.push({ location:locations[i], year:years[i] });
+            }
+            
+        }
+        return(newTrips);
+    }, [year, location, years, locations])
 
     useEffect(()=>{
-        const filterTrips =()=> {
-            let newTrips = [];
-            for(let i=0; i<years.length; i++){
-                if( 
-                    (years[i] === year || year === '') && 
-                    (locations[i] === location || location === '') 
-                ){
-                    newTrips.push({ location:locations[i], year:years[i] });
-                }
-                
-            }
-            setTrips(newTrips);
-        }
-
-        filterTrips();
-    }, [year, location, years, locations]);
+        setTrips(filterTrips);
+    }, [filterTrips]);
 
     return(
         <Container>
