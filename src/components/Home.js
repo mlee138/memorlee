@@ -6,8 +6,8 @@ import { fadeIn, fadeHalf } from "../animations/fade"
 import { cloudinaryFileName } from "../helper/format";
 
 function Home({ data }){
-    const [randNum, setRandNum] = useState(Math.floor(Math.random()*data.years.length));
-    const [randData, setRandData] = useState({
+    const [randNum] = useState(Math.floor(Math.random()*data.years.length));
+    const [randData] = useState({
         year: data.years[randNum], 
         location: data.locations[randNum]
     });
