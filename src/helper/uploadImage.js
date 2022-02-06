@@ -26,7 +26,7 @@ const uploadImage = async(file, year, loc) => {
             }, async () => {
                 const url = await storageRef.getDownloadURL();
                 const createdAt = timestamp();
-                collectionRef.doc(file.name).set({ url, createdAt });
+                collectionRef.doc(file.name).set({ url, createdAt, file_name: file.name });
                 resolve(`${file.name} successfully uploaded`);
             })
     });
