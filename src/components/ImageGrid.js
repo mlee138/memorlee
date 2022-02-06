@@ -1,14 +1,19 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Modal from './Modal';
 import useFirestore from '../hooks/useFirestore';
+import backfillFileNames from '../firebase/backfill';
 
 function ImageGrid({ year, location }) {
     const ImagesPerPage = 10;
     const [ urls ] = useFirestore(year, location);
     const [modalImg, setModalImg] = useState('');
     const [ range, setRange ] = useState(ImagesPerPage);
+
+    useEffect(() => {
+        if(urls.length) backfillFileNames(year, location);
+    }, [urls]);
 
     const showModal = (e) => {
         setModalImg(e.target.src);
