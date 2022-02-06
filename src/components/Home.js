@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {Link} from 'react-router-dom';
 import styled from 'styled-components';
 import useRandomImage from "../hooks/useRandomImage";
@@ -6,16 +6,13 @@ import { fadeIn, fadeHalf } from "../animations/fade"
 import { cloudinaryFileName } from "../helper/format";
 
 function Home({ data }){
-    const randNum = Math.floor(Math.random()*data.years.length);
-    const randData = {
-                        year: data.years[randNum], 
-                        location: data.locations[randNum]
-                     };
-
+    const [randNum, setRandNum] = useState(Math.floor(Math.random()*data.years.length));
+    const [randData, setRandData] = useState({
+        year: data.years[randNum], 
+        location: data.locations[randNum]
+    });
     const [ url ] = useRandomImage(randData);
-// {
-//     url && <Image src={url} alt="random vacation"/>
-// }
+
     return(
         <Container>
             <TextContainer>
