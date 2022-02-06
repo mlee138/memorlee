@@ -3,7 +3,7 @@ import { firestore } from '../firebase/config';
 import { formatTripName } from '../helper/format';
 
 function useFirestore(year, location) {
-    const [urls, setUrls] = useState([]);
+    const [names, setNames] = useState([]);
 
     useEffect( ()=>{
         firestore.collection(formatTripName(year, location))
@@ -11,16 +11,16 @@ function useFirestore(year, location) {
             .then(snap => {
                 let documents = [];
                 snap.forEach(doc => {
-                    documents.push(doc.data().url);
+                    documents.push(doc.data().file_name);
                 });
-                setUrls(documents)
+                setNames(documents)
             })
             .catch((error) => {
                 console.log(`Error getting document: ${error}`);
             });
     
     }, [year, location]); 
-    return [ urls ];
+    return [ names ];
 }
 
 export default useFirestore;

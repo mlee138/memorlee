@@ -6,11 +6,10 @@ function AlbumView({ match, history }) {
     const {location, year} = match.params;
 
     const handleBack = () => {
-        history.goBack();
+        history.push("/explore");
     }
 
     return (
-        
         <Container>
             <Button onTouchStart={handleBack} onClick={handleBack}>&lt; Back</Button>
             <h1>{location}</h1>

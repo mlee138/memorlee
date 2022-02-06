@@ -4,7 +4,7 @@ import { formatTripName } from '../helper/format';
 
 function useRandomImage(tripData) {
     const [trip, setTrip] = useState(tripData);
-    const [url, setUrl] = useState('');
+    const [fileName, setFileName] = useState('');
     const [loading, setLoading] = useState(false);
 
     function newTrip(newYr, newLoc) {
@@ -19,12 +19,12 @@ function useRandomImage(tripData) {
             firestore.collection(formatTripName(trip.year, trip.location))
             .get()
             .then(snap => {
-                let urls = [];
+                let fileNames = [];
                 snap.forEach(item => {
-                    urls.push(item.data().url)
+                    fileNames.push(item.data().file_name)
                 })
-                const randIndex = Math.floor(Math.random()*urls.length); 
-                setUrl(urls[randIndex]);
+                const randIndex = Math.floor(Math.random()*fileNames.length); 
+                setFileName(fileNames[randIndex]);
                 setLoading(false);
             })
             .catch((error) => {
@@ -32,10 +32,10 @@ function useRandomImage(tripData) {
                 console.log(`Error getting document: ${error}`);
             });
         } else {
-            setUrl('');
+            setFileName('');
         }
     }, [trip]); 
-    return [url, loading, newTrip];
+    return [fileName, loading, newTrip];
 }
 
 export default useRandomImage;

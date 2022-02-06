@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import styled from 'styled-components';
 import useRandomImage from "../hooks/useRandomImage";
 import { fadeIn, fadeHalf } from "../animations/fade"
+import { cloudinaryFileName } from "../helper/format";
 
 function Home({ data }){
     const randNum = Math.floor(Math.random()*data.years.length);
@@ -24,8 +25,7 @@ function Home({ data }){
                     Relive the Past 
                 </StyledLink>
             </TextContainer>
-            <Image src={url} alt="I odn't remember"/>
-            
+            { url && (<Image src={cloudinaryFileName(randData.year, randData.location, url)} alt="vacation memory"/>) }
         </Container>
     )
 }

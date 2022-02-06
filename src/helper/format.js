@@ -20,3 +20,8 @@ export function toTitleCase (str) {
 export function toWebp(str) {
   return str.substring(0, str.indexOf('.')) + '.webp';
 }
+
+export function cloudinaryFileName(year, location, filename) {
+  const tripName = formatTripName(year, location);
+  return `https://memorlee-optomizer.mo.cloudinary.net/${tripName}/${filename}`;
+}

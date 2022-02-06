@@ -3,14 +3,17 @@ import styled from 'styled-components';
 import useRandomImage from '../hooks/useRandomImage';
 import { fadeIn } from '../animations/fade';
 import { loadingTurn } from '../animations/loading';
+import { cloudinaryFileName } from '../helper/format';
 
 function Discover({ data }){
     const {years, locations} = data;
-    const [url, loading, newTrip] = useRandomImage({ year: '', location:''});
+    const [name, loading, newTrip] = useRandomImage({ year: '', location:''});
     const [prompt, setPrompt] = useState('');
     const [choices, setChoices] = useState([]);
     const [answer, setAnswer] = useState('');
     const [userChoice, setUserChoice] = useState('');
+    const [year, setYear] = useState();
+    const [location, setLocation] = useState('');
     const radiosRef = useRef(null);
     const promptRef = useRef(null);
 
@@ -39,7 +42,8 @@ function Discover({ data }){
         const randIndex = Math.floor(Math.random()*years.length);
         const randYear = years[randIndex];
         const randLocation = locations[randIndex];
-        
+        setYear(randYear);
+        setLocation(randLocation);
         newTrip(randYear, randLocation);
         
         let arr, correctValue, q;
@@ -108,7 +112,7 @@ function Discover({ data }){
                         loading ?
                         <Loading></Loading>
                         :
-                        <Image src={url} alt={`${answer} vacation`} />
+                        <Image src={cloudinaryFileName(year, location, name)} alt={`${answer} vacation`} />
                     }
                     
                 </ImageContainer>

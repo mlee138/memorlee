@@ -3,10 +3,11 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Modal from './Modal';
 import useFirestore from '../hooks/useFirestore';
+import { cloudinaryFileName } from '../helper/format';
 
 function ImageGrid({ year, location }) {
     const ImagesPerPage = 10;
-    const [ urls ] = useFirestore(year, location);
+    const [ names ] = useFirestore(year, location);
     const [modalImg, setModalImg] = useState('');
     const [ range, setRange ] = useState(ImagesPerPage);
 
@@ -22,11 +23,11 @@ function ImageGrid({ year, location }) {
         <div>
             <Grid>
                 { 
-                    urls.length !== 0 && urls.slice(0, range).map((url, i) => {
+                    names.length !== 0 && names.slice(0, range).map((name, i) => {
                         return (
                             <ImageContainer key={i} >
                                 <Image 
-                                    src={url} 
+                                    src={cloudinaryFileName(year, location, name)} 
                                     alt={`${location} ${year}`}
                                     onClick={showModal}
                                     loading="lazy"/>
@@ -36,7 +37,7 @@ function ImageGrid({ year, location }) {
                 }
             </Grid>
             {
-                (range < urls.length) ? 
+                (range < names.length) ? 
                     <Button onClick={()=>setRange((prev)=>prev+ImagesPerPage)}>Load More</Button>
                     :
                     <p>End of Album</p>
